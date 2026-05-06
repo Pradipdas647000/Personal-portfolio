@@ -88,9 +88,9 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-primary font-satisfy text-3xl"
+              className="font-satisfy text-3xl text-white"
             >
-              Hi, I'm Pradip
+              Hi, I'm <span className="text-glow-cyan text-accent">Pradip</span>
             </motion.h2>
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9 }}
