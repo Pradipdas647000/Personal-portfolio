@@ -28,6 +28,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const targetId = id.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <nav
       className={cn(
@@ -53,6 +61,10 @@ export function Navbar() {
               key={link.name}
               href={link.href}
               onMouseEnter={() => setHoveredIndex(idx)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.href);
+              }}
               className={cn(
                 "relative px-5 py-2 text-sm font-medium transition-all duration-300 z-10 rounded-full",
                 hoveredIndex === idx ? "text-white" : "text-white/60"
@@ -79,11 +91,18 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 rounded-full">
+          <Button 
+            variant="ghost" 
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full"
+            onClick={() => window.print()}
+          >
             <Download className="w-4 h-4 mr-2" />
             Resume
           </Button>
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg shadow-primary/20">
+          <Button 
+            className="bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg shadow-primary/20"
+            onClick={() => scrollToSection('#contact')}
+          >
             Contact Me
           </Button>
         </div>
@@ -104,18 +123,35 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                scrollToSection(link.href);
+              }}
               className="text-2xl font-headline font-semibold text-white/70 hover:text-white"
             >
               {link.name}
             </a>
           ))}
           <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
-            <Button variant="outline" className="w-full rounded-xl border-white/10 bg-white/5 text-white">
+            <Button 
+              variant="outline" 
+              className="w-full rounded-xl border-white/10 bg-white/5 text-white"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.print();
+              }}
+            >
               <Download className="w-4 h-4 mr-2" />
               Resume
             </Button>
-            <Button className="w-full bg-primary text-white rounded-xl">
+            <Button 
+              className="w-full bg-primary text-white rounded-xl"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                scrollToSection('#contact');
+              }}
+            >
               Contact Me
             </Button>
           </div>

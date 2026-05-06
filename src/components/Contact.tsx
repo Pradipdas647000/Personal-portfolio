@@ -1,11 +1,13 @@
 
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, Send, MapPin, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "#", color: "hover:text-white" },
@@ -14,6 +16,24 @@ const socials = [
 ];
 
 export function Contact() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      (e.target as HTMLFormElement).reset();
+    }, 1500);
+  };
+
   return (
     <section id="contact" className="py-24 px-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -82,24 +102,33 @@ export function Contact() {
           viewport={{ once: true }}
           className="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden"
         >
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Name</label>
-                <Input placeholder="John Doe" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input required placeholder="John Doe" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Email</label>
-                <Input placeholder="john@example.com" type="email" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input required placeholder="john@example.com" type="email" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/60 ml-1">Message</label>
-              <Textarea placeholder="How can I help you?" className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+              <Textarea required placeholder="How can I help you?" className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
             </div>
-            <Button className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
-              Send Message
-              <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <Button disabled={isSubmitting} className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
+              {isSubmitting ? (
+                <>
+                  Sending...
+                  <Loader2 className="w-5 h-5 ml-2 animate-spin" />
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </>
+              )}
             </Button>
           </form>
         </motion.div>

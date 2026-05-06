@@ -34,6 +34,19 @@ export function Hero() {
     setMousePos({ x, y });
   };
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleDownloadResume = () => {
+    // In a real app, this would be a link to a PDF. 
+    // For now, we'll trigger a print or show a message.
+    window.print();
+  };
+
   return (
     <section 
       ref={containerRef}
@@ -106,15 +119,29 @@ export function Hero() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white px-8 h-12 shadow-xl shadow-primary/20 group">
+            <Button 
+              size="lg" 
+              className="rounded-full bg-primary hover:bg-primary/90 text-white px-8 h-12 shadow-xl shadow-primary/20 group"
+              onClick={() => scrollToSection('projects')}
+            >
               View Projects
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full glass glass-hover border-white/10 text-white px-8 h-12">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="rounded-full glass glass-hover border-white/10 text-white px-8 h-12"
+              onClick={handleDownloadResume}
+            >
               <FileText className="w-4 h-4 mr-2" />
               Download Resume
             </Button>
-            <Button size="lg" variant="ghost" className="rounded-full text-white/70 hover:text-white hover:bg-white/5 px-8 h-12">
+            <Button 
+              size="lg" 
+              variant="ghost" 
+              className="rounded-full text-white/70 hover:text-white hover:bg-white/5 px-8 h-12"
+              onClick={() => scrollToSection('contact')}
+            >
               <Send className="w-4 h-4 mr-2" />
               Contact Me
             </Button>
