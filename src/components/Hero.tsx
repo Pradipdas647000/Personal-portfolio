@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -63,19 +64,19 @@ export function Hero() {
         >
           {/* Avatar Area */}
           <div className="relative">
-            <div className="absolute inset-0 bg-primary/30 rounded-[2.5rem] blur-2xl animate-pulse" />
-            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-[2.5rem] border-2 border-white/20 p-1.5 overflow-hidden glass">
+            <div className="absolute inset-0 bg-primary/30 rounded-3xl blur-2xl animate-pulse" />
+            <div className="relative w-32 h-44 md:w-40 md:h-56 rounded-3xl border-2 border-white/20 p-1.5 overflow-hidden glass">
               {avatar ? (
                 <Image 
                   src={avatar}
                   alt="Pradip"
                   width={160}
-                  height={160}
-                  className="rounded-[2.2rem] object-cover"
+                  height={224}
+                  className="rounded-2xl object-cover h-full w-full"
                   data-ai-hint="man portrait"
                 />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-[2.2rem]">
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-2xl">
                   <span className="text-primary font-bold text-2xl">P</span>
                 </div>
               )}

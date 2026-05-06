@@ -39,8 +39,8 @@
     },
     {
       "id": "avatar",
-      "description": "Futuristic developer avatar",
-      "imageUrl": "https://picsum.photos/seed/pradip/400/400",
+      "description": "Portrait of Pradip",
+      "imageUrl": "https://picsum.photos/seed/pradip-portrait/400/600",
       "imageHint": "man portrait"
     }
   ]
