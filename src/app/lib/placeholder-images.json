@@ -40,7 +40,7 @@
     {
       "id": "avatar",
       "description": "Portrait of Pradip",
-      "imageUrl": "https://picsum.photos/seed/pradip-portrait/400/600",
+      "imageUrl": "https://picsum.photos/seed/pradip-avatar/400/600",
       "imageHint": "man portrait"
     }
   ]

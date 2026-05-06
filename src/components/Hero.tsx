@@ -11,7 +11,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
   const fullText = "Building modern digital experiences";
-  const avatar = PlaceHolderImages.find(img => img.id === "avatar")?.imageUrl;
+  const avatarImage = PlaceHolderImages.find(img => img.id === "avatar")?.imageUrl;
   
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -54,29 +54,29 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10"
+        className="relative z-10 w-full"
       >
         <div 
-          className="glass p-8 md:p-16 rounded-[2rem] max-w-4xl mx-auto flex flex-col items-center text-center space-y-8 transition-transform duration-300 ease-out"
+          className="glass p-8 md:p-16 rounded-[2.5rem] max-w-4xl mx-auto flex flex-col items-center text-center space-y-8 transition-transform duration-300 ease-out"
           style={{
             transform: `perspective(1000px) rotateX(${-mousePos.y}deg) rotateY(${mousePos.x}deg)`
           }}
         >
           {/* Avatar Area */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/30 rounded-3xl blur-2xl animate-pulse" />
-            <div className="relative w-32 h-44 md:w-40 md:h-56 rounded-3xl border-2 border-white/20 p-1.5 overflow-hidden glass">
-              {avatar ? (
+          <div className="relative group">
+            <div className="absolute inset-[-4px] bg-gradient-to-tr from-primary via-accent to-primary rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+            <div className="relative w-32 h-44 md:w-40 md:h-56 rounded-[1.8rem] border-2 border-white/20 p-1 overflow-hidden glass">
+              {avatarImage ? (
                 <Image 
-                  src={avatar}
+                  src={avatarImage}
                   alt="Pradip"
                   width={160}
                   height={224}
-                  className="rounded-2xl object-cover h-full w-full"
+                  className="rounded-[1.5rem] object-cover h-full w-full"
                   data-ai-hint="man portrait"
                 />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-2xl">
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-[1.5rem]">
                   <span className="text-primary font-satisfy text-4xl">P</span>
                 </div>
               )}
@@ -88,7 +88,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="font-satisfy text-3xl text-white"
+              className="font-satisfy text-4xl"
             >
               Hi, I'm <span className="text-glow-cyan text-accent">Pradip</span>
             </motion.h2>
