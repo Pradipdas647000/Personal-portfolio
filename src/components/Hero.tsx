@@ -63,24 +63,24 @@ export function Hero() {
         >
           {/* Avatar Area */}
           <div className="relative">
-            <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl animate-pulse" />
-            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/20 p-1.5 overflow-hidden">
+            <div className="absolute inset-0 bg-primary/30 rounded-[2.5rem] blur-2xl animate-pulse" />
+            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-[2.5rem] border-2 border-white/20 p-1.5 overflow-hidden glass">
               {avatar ? (
                 <Image 
                   src={avatar}
                   alt="Pradip"
                   width={160}
                   height={160}
-                  className="rounded-full object-cover"
+                  className="rounded-[2.2rem] object-cover"
                   data-ai-hint="man portrait"
                 />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-full">
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-[2.2rem]">
                   <span className="text-primary font-bold text-2xl">P</span>
                 </div>
               )}
             </div>
-            <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+            <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground px-4 py-1 rounded-xl text-xs font-bold shadow-lg">
               Full Stack
             </div>
           </div>
