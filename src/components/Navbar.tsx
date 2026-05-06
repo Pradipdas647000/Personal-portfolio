@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Download, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -17,6 +18,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,19 +38,41 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-            <span className="font-headline font-bold text-lg">A</span>
+            <span className="font-headline font-bold text-lg text-white">A</span>
           </div>
-          <span className="font-headline font-bold text-xl tracking-tight hidden sm:block">Aetherfolio</span>
+          <span className="font-headline font-bold text-xl tracking-tight hidden sm:block text-white">Aetherfolio</span>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8 glass px-6 py-2.5 rounded-full border border-white/10">
-          {navLinks.map((link) => (
+        {/* Desktop Nav with Liquid Glass Effect */}
+        <div 
+          className="hidden md:flex items-center glass p-1 rounded-full border border-white/10 relative"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          {navLinks.map((link, idx) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+              onMouseEnter={() => setHoveredIndex(idx)}
+              className={cn(
+                "relative px-5 py-2 text-sm font-medium transition-all duration-300 z-10 rounded-full",
+                hoveredIndex === idx ? "text-white" : "text-white/60"
+              )}
             >
+              {hoveredIndex === idx && (
+                <motion.div
+                  layoutId="navbar-liquid-bg"
+                  className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 400, 
+                    damping: 30,
+                    opacity: { duration: 0.2 }
+                  }}
+                />
+              )}
               {link.name}
             </a>
           ))}
@@ -87,7 +111,7 @@ export function Navbar() {
             </a>
           ))}
           <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
-            <Button variant="outline" className="w-full rounded-xl border-white/10 bg-white/5">
+            <Button variant="outline" className="w-full rounded-xl border-white/10 bg-white/5 text-white">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </Button>
