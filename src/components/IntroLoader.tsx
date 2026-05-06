@@ -10,7 +10,15 @@ const languages = [
   "Hola",       // Spanish
   "こんにちは",  // Japanese
   "Bonjour",    // French
-  "مرحبا"       // Arabic
+  "مرحبا",      // Arabic
+  "Hallo",      // German
+  "Ciao",       // Italian
+  "Olá",        // Portuguese
+  "Привет",     // Russian
+  "안녕하세요",   // Korean
+  "你好",       // Chinese
+  "Merhaba",    // Turkish
+  "Γεια σας"    // Greek
 ];
 
 interface IntroLoaderProps {
@@ -21,15 +29,21 @@ export function IntroLoader({ onComplete }: IntroLoaderProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    // Total duration target: 3 seconds (3000ms)
+    // 14 languages = 13 transitions
+    // 13 transitions * 150ms = 1950ms
+    // Final pause = 1050ms
+    // Total = 3000ms
+    
     if (index < languages.length - 1) {
       const timer = setTimeout(() => {
         setIndex((prev) => prev + 1);
-      }, 400); // Slightly adjusted timing for better readability
+      }, 150); 
       return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => {
         onComplete();
-      }, 1000); // Hold the last greeting briefly before transition
+      }, 1050); 
       return () => clearTimeout(timer);
     }
   }, [index, onComplete]);
@@ -38,7 +52,7 @@ export function IntroLoader({ onComplete }: IntroLoaderProps) {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.1 }}
-      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
     >
       <div className="relative flex items-center gap-6">
@@ -57,15 +71,15 @@ export function IntroLoader({ onComplete }: IntroLoaderProps) {
           className="w-2.5 h-2.5 rounded-full bg-accent"
         />
         
-        <div className="overflow-hidden">
+        <div className="overflow-hidden h-[60px] md:h-[100px] flex items-center">
           <AnimatePresence mode="wait">
             <motion.span
               key={languages[index]}
-              initial={{ y: 40, opacity: 0 }}
+              initial={{ y: 60, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -40, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="text-4xl md:text-7xl font-headline font-bold text-white block"
+              exit={{ y: -60, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="text-4xl md:text-7xl font-headline font-bold text-white block text-center min-w-[200px]"
             >
               {languages[index]}
             </motion.span>
