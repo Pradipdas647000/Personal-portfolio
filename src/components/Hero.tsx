@@ -81,9 +81,6 @@ export function Hero() {
                 </div>
               )}
             </div>
-            <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground px-4 py-1 rounded-xl text-xs font-bold shadow-lg">
-              Full Stack
-            </div>
           </div>
 
           <div className="space-y-4">
@@ -91,7 +88,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-primary font-satisfy text-2xl"
+              className="text-primary font-satisfy text-3xl"
             >
               Hi, I'm Pradip
             </motion.h2>
