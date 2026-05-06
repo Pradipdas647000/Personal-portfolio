@@ -1,0 +1,47 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "syntax-checker",
+      "description": "Code syntax analyzer interface",
+      "imageUrl": "https://picsum.photos/seed/syntax/800/600",
+      "imageHint": "code programming"
+    },
+    {
+      "id": "fitness-app",
+      "description": "Fitness tracking mobile application",
+      "imageUrl": "https://picsum.photos/seed/fitness/800/600",
+      "imageHint": "fitness workout"
+    },
+    {
+      "id": "weather-app",
+      "description": "Modern weather forecast dashboard",
+      "imageUrl": "https://picsum.photos/seed/weather/800/600",
+      "imageHint": "weather forecast"
+    },
+    {
+      "id": "snake-game",
+      "description": "Retro snake game with neon graphics",
+      "imageUrl": "https://picsum.photos/seed/snake/800/600",
+      "imageHint": "retro game"
+    },
+    {
+      "id": "chess-game",
+      "description": "3D chess game interface",
+      "imageUrl": "https://picsum.photos/seed/chess/800/600",
+      "imageHint": "chess board"
+    },
+    {
+      "id": "ai-drone",
+      "description": "AI powered drone surveillance project",
+      "imageUrl": "https://picsum.photos/seed/drone/800/600",
+      "imageHint": "drone technology"
+    },
+    {
+      "id": "avatar",
+      "description": "Futuristic developer avatar",
+      "imageUrl": "https://picsum.photos/seed/pradip/400/400",
+      "imageHint": "man portrait"
+    }
+  ]
+}
