@@ -31,19 +31,19 @@ export function IntroLoader({ onComplete }: IntroLoaderProps) {
   useEffect(() => {
     // Total duration target: 3 seconds (3000ms)
     // 14 languages = 13 transitions
-    // 13 transitions * 150ms = 1950ms
-    // Final pause = 1050ms
+    // 13 transitions * 200ms = 2600ms
+    // Final pause = 400ms
     // Total = 3000ms
     
     if (index < languages.length - 1) {
       const timer = setTimeout(() => {
         setIndex((prev) => prev + 1);
-      }, 150); 
+      }, 200); 
       return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => {
         onComplete();
-      }, 1050); 
+      }, 400); 
       return () => clearTimeout(timer);
     }
   }, [index, onComplete]);
@@ -72,13 +72,13 @@ export function IntroLoader({ onComplete }: IntroLoaderProps) {
         />
         
         <div className="overflow-hidden h-[60px] md:h-[100px] flex items-center">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             <motion.span
               key={languages[index]}
               initial={{ y: 60, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -60, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
               className="text-4xl md:text-7xl font-headline font-bold text-white block text-center min-w-[200px]"
             >
               {languages[index]}
