@@ -77,7 +77,7 @@ export function Hero() {
                 />
               ) : (
                 <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-2xl">
-                  <span className="text-primary font-bold text-2xl">P</span>
+                  <span className="text-primary font-satisfy text-4xl">P</span>
                 </div>
               )}
             </div>
@@ -91,7 +91,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-primary font-headline font-bold text-xl tracking-widest uppercase"
+              className="text-primary font-satisfy text-2xl"
             >
               Hi, I'm Pradip
             </motion.h2>
