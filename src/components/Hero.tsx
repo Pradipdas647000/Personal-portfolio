@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -11,7 +10,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
   const fullText = "Building modern digital experiences";
-  const avatar = PlaceHolderImages.find(img => img.id === "avatar")?.imageUrl || "";
+  const avatar = PlaceHolderImages.find(img => img.id === "avatar")?.imageUrl;
   
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -66,14 +65,20 @@ export function Hero() {
           <div className="relative">
             <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl animate-pulse" />
             <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/20 p-1.5 overflow-hidden">
-              <Image 
-                src={avatar}
-                alt="Pradip"
-                width={160}
-                height={160}
-                className="rounded-full object-cover"
-                data-ai-hint="man portrait"
-              />
+              {avatar ? (
+                <Image 
+                  src={avatar}
+                  alt="Pradip"
+                  width={160}
+                  height={160}
+                  className="rounded-full object-cover"
+                  data-ai-hint="man portrait"
+                />
+              ) : (
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-full">
+                  <span className="text-primary font-bold text-2xl">P</span>
+                </div>
+              )}
             </div>
             <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-xs font-bold shadow-lg">
               Full Stack

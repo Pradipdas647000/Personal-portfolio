@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -8,13 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
-const projects = [
+const projectsData = [
   {
     id: "syntax-checker",
     title: "Syntax Checker",
     desc: "A powerful real-time code analyzer and linting tool for developers.",
     tech: ["React", "Node.js", "Monaco Editor"],
-    image: PlaceHolderImages.find(img => img.id === "syntax-checker")?.imageUrl || "",
     size: "lg",
   },
   {
@@ -22,7 +20,6 @@ const projects = [
     title: "Fitness App",
     desc: "Mobile health tracker with personalized workout routines and calorie counters.",
     tech: ["Flutter", "Firebase"],
-    image: PlaceHolderImages.find(img => img.id === "fitness-app")?.imageUrl || "",
     size: "md",
   },
   {
@@ -30,7 +27,6 @@ const projects = [
     title: "Weather App",
     desc: "Minimalist weather dashboard with precise local data and forecast visuals.",
     tech: ["Next.js", "Tailwind"],
-    image: PlaceHolderImages.find(img => img.id === "weather-app")?.imageUrl || "",
     size: "md",
   },
   {
@@ -38,7 +34,6 @@ const projects = [
     title: "AI Drone Project",
     desc: "Autonomous drone flight controller powered by computer vision algorithms.",
     tech: ["Python", "OpenCV", "C++"],
-    image: PlaceHolderImages.find(img => img.id === "ai-drone")?.imageUrl || "",
     size: "lg",
   },
   {
@@ -46,7 +41,6 @@ const projects = [
     title: "Snake Game",
     desc: "A retro-themed neon snake game with procedural level generation.",
     tech: ["Java", "Swing"],
-    image: PlaceHolderImages.find(img => img.id === "snake-game")?.imageUrl || "",
     size: "sm",
   },
   {
@@ -54,12 +48,16 @@ const projects = [
     title: "Chess Game",
     desc: "A multiplayer strategic chess game with real-time move validation.",
     tech: ["React", "Socket.io"],
-    image: PlaceHolderImages.find(img => img.id === "chess-game")?.imageUrl || "",
     size: "sm",
   },
 ];
 
 export function Projects() {
+  const projects = projectsData.map(p => ({
+    ...p,
+    image: PlaceHolderImages.find(img => img.id === p.id)?.imageUrl,
+  }));
+
   return (
     <section id="projects" className="py-24 px-6 max-w-7xl mx-auto">
       <div className="mb-16">
@@ -81,13 +79,15 @@ export function Projects() {
           >
             {/* Image layer */}
             <div className="absolute inset-0 z-0">
-              <Image 
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
-                data-ai-hint={project.id.replace('-', ' ')}
-              />
+              {project.image && (
+                <Image 
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                  data-ai-hint={project.id.replace('-', ' ')}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
             </div>
 
