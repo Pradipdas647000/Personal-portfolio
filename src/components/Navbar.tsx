@@ -38,9 +38,9 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-            <span className="font-headline font-bold text-lg text-white">A</span>
+            <span className="font-satisfy text-lg text-white">PD</span>
           </div>
-          <span className="font-headline font-bold text-xl tracking-tight hidden sm:block text-white">Aetherfolio</span>
+          <span className="font-satisfy text-xl tracking-tight hidden sm:block text-white">Pradip</span>
         </a>
 
         {/* Desktop Nav with Liquid Glass Effect */}

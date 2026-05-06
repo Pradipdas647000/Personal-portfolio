@@ -7,9 +7,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-white/40 text-sm">
         <div className="flex items-center space-x-2 mb-4 md:mb-0">
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-            <span className="font-headline font-bold text-primary">A</span>
+            <span className="font-satisfy text-primary">PD</span>
           </div>
-          <span className="font-headline font-semibold tracking-tight text-white/60">Aetherfolio</span>
+          <span className="font-satisfy tracking-tight text-white/60">Pradip</span>
         </div>
         
         <p>© {new Date().getFullYear()} Pradip. All rights reserved.</p>
