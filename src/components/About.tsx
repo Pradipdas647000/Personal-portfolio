@@ -18,9 +18,9 @@ const timeline = [
     icon: <Briefcase className="w-5 h-5" />,
   },
   {
-    year: "2021",
-    title: "University Education",
-    desc: "Started Computer Science journey, focusing on core programming concepts.",
+    year: "2024",
+    title: "Frontend Development Journey",
+    desc: "Entered the world of frontend development and started building projects while exploring modern UI design, responsive websites, and interactive user experiences.",
     icon: <GraduationCap className="w-5 h-5" />,
   },
   {
