@@ -49,13 +49,13 @@ export function About() {
           
           <div className="space-y-6 text-white/70 leading-relaxed text-lg">
             <p>
-              I am a passionate Full Stack Developer with a deep interest in building modern, performant, and visually stunning digital products. My journey into development started with a curiosity for how things work on the internet.
+              Hi, I’m Pradip — a passionate Full Stack Developer focused on building modern, interactive, and user-friendly digital experiences. I enjoy turning ideas into real-world projects through clean design, efficient code, and creative problem-solving.
             </p>
             <p>
-              Specializing in the <span className="text-white font-semibold">MERN stack</span> and <span className="text-white font-semibold">Next.js</span>, I thrive on solving complex problems and turning ideas into interactive experiences. My focus is always on writing clean, maintainable code while ensuring a top-tier user experience.
+              I work with technologies like <span className="text-white font-semibold">React, Node.js, Flutter, Python, C/C++, and SQL</span> to create responsive web and mobile applications. I’m also deeply interested in <span className="text-white font-semibold">Artificial Intelligence, Drone Technology</span>, and modern UI/UX experiences.
             </p>
             <p>
-              I am constantly exploring new technologies, particularly in the realm of <span className="text-white font-semibold">AI and Drone technology</span>, looking for ways to merge software with the physical world.
+              Currently, I’m exploring innovative ways to combine software with real-world technology while continuously learning and building impactful projects.
             </p>
           </div>
         </motion.div>
