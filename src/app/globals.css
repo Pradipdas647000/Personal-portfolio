@@ -59,6 +59,13 @@
   body {
     @apply bg-background text-foreground font-body overflow-x-hidden;
   }
+  
+  .overwatch-cursor, 
+  .overwatch-cursor *,
+  .overwatch-cursor a,
+  .overwatch-cursor button {
+    cursor: url('https://cdn.cursors-4u.net/cursors/animated/overwatch-working-in-background-3ef963f5-48.ani'), url('https://cdn.cursors-4u.net/cursors/animated/overwatch-working-in-background-3ef963f5-48.gif'), auto !important;
+  }
 }
 
 .animate-float {
