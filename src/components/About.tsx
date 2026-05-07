@@ -6,16 +6,16 @@ import { GraduationCap, Briefcase, Award, Zap } from "lucide-react";
 
 const timeline = [
   {
+    year: "2025",
+    title: "Internship Experience",
+    desc: "Completed internships and worked with real companies while building full stack projects and gaining hands-on industry experience.",
+    icon: <Briefcase className="w-5 h-5" />,
+  },
+  {
     year: "2024",
     title: "Learning Journey",
     desc: "Mastering Next.js 15, AI integrations, and advanced cloud architectures.",
     icon: <Zap className="w-5 h-5" />,
-  },
-  {
-    year: "2023",
-    title: "Internship Experience",
-    desc: "Worked on real-world web applications and collaborative agile environments.",
-    icon: <Briefcase className="w-5 h-5" />,
   },
   {
     year: "2024",
