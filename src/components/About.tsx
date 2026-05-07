@@ -26,7 +26,7 @@ const timeline = [
   {
     year: "2023",
     title: "Started the Journey",
-    desc: "Developed several open-source projects and participated in local hackathons.",
+    desc: "Joined university and started learning programming and web development, building a strong foundation in software development and problem-solving.",
     icon: <Award className="w-5 h-5" />,
   },
 ];
