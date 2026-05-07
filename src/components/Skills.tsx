@@ -15,15 +15,18 @@ import {
 } from "lucide-react";
 
 const skills = [
+  { name: "JavaScript", icon: <Code2 className="w-8 h-8" />, color: "text-yellow-400" },
+  { name: "Python", icon: <Terminal className="w-8 h-8" />, color: "text-blue-500" },
+  { name: "C / C++", icon: <Cpu className="w-8 h-8" />, color: "text-blue-300" },
+  { name: "Java", icon: <Coffee className="w-8 h-8" />, color: "text-red-400" },
   { name: "React", icon: <Code2 className="w-8 h-8" />, color: "text-blue-400" },
   { name: "Next.js", icon: <Layers className="w-8 h-8" />, color: "text-white" },
   { name: "Node.js", icon: <Terminal className="w-8 h-8" />, color: "text-green-400" },
-  { name: "Express", icon: <Cpu className="w-8 h-8" />, color: "text-gray-300" },
+  { name: "Express.js", icon: <Cpu className="w-8 h-8" />, color: "text-gray-300" },
   { name: "MongoDB", icon: <Database className="w-8 h-8" />, color: "text-green-500" },
-  { name: "Flutter", icon: <Smartphone className="w-8 h-8" />, color: "text-cyan-400" },
-  { name: "Java", icon: <Coffee className="w-8 h-8" />, color: "text-red-400" },
-  { name: "Tailwind", icon: <Palette className="w-8 h-8" />, color: "text-sky-400" },
   { name: "Firebase", icon: <Flame className="w-8 h-8" />, color: "text-orange-400" },
+  { name: "Flutter", icon: <Smartphone className="w-8 h-8" />, color: "text-cyan-400" },
+  { name: "Tailwind", icon: <Palette className="w-8 h-8" />, color: "text-sky-400" },
 ];
 
 export function Skills() {
@@ -34,7 +37,7 @@ export function Skills() {
         <h3 className="text-4xl md:text-5xl font-headline font-bold text-white">Technical <span className="text-primary">Arsenal</span></h3>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {skills.map((skill, index) => (
           <motion.div
             key={skill.name}
