@@ -24,8 +24,8 @@ const timeline = [
     icon: <GraduationCap className="w-5 h-5" />,
   },
   {
-    year: "Achievements",
-    title: "Key Milestones",
+    year: "2023",
+    title: "Started the Journey",
     desc: "Developed several open-source projects and participated in local hackathons.",
     icon: <Award className="w-5 h-5" />,
   },
