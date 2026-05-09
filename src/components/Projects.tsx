@@ -1,8 +1,9 @@
+
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Terminal, Code, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -11,8 +12,8 @@ const projectsData = [
   {
     id: "syntax-checker",
     title: "Syntax Checker",
-    desc: "A powerful real-time code analyzer and linting tool for developers.",
-    tech: ["React", "Node.js", "Monaco Editor"],
+    desc: "Advanced real-time static analysis engine for TypeScript and JavaScript with deep AST inspection and architectural linting.",
+    tech: ["React", "Node.js", "Monaco Editor", "AST"],
     size: "lg",
   },
   {
@@ -84,11 +85,29 @@ export function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-30 group-hover:opacity-40"
                   data-ai-hint={project.id.replace('-', ' ')}
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              
+              {/* Specialized Background Decorator for Syntax Checker */}
+              {project.id === "syntax-checker" && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div className="absolute top-10 left-10 font-code text-[10px] text-accent space-y-1">
+                    <p>const analyze = (node) =&gt; &#123;</p>
+                    <p className="pl-4">if (node.type === "Identifier") &#123;</p>
+                    <p className="pl-8 text-primary">return validate(node.name);</p>
+                    <p className="pl-4">&#125;</p>
+                    <p>&#125;</p>
+                  </div>
+                  <div className="absolute bottom-10 right-10 flex gap-2">
+                    <Terminal className="w-12 h-12 text-primary/40" />
+                    <Code className="w-12 h-12 text-accent/40" />
+                  </div>
+                </div>
+              )}
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             </div>
 
             {/* Content layer */}
@@ -100,8 +119,17 @@ export function Projects() {
                       {t}
                     </Badge>
                   ))}
+                  {project.id === "syntax-checker" && (
+                    <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
+                      <CheckCircle2 className="w-3 h-3 mr-1" />
+                      Live Analysis
+                    </Badge>
+                  )}
                 </div>
-                <h4 className="text-2xl md:text-3xl font-headline font-bold text-white">{project.title}</h4>
+                <h4 className="text-2xl md:text-3xl font-headline font-bold text-white flex items-center gap-2">
+                  {project.title}
+                  {project.id === "syntax-checker" && <Terminal className="w-6 h-6 text-primary" />}
+                </h4>
                 <p className="text-white/60 text-sm line-clamp-2 max-w-md">
                   {project.desc}
                 </p>
