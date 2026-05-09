@@ -69,6 +69,7 @@ export function Projects() {
   const projects = projectsData.map(p => ({
     ...p,
     image: PlaceHolderImages.find(img => img.id === p.id)?.imageUrl,
+    imageHint: PlaceHolderImages.find(img => img.id === p.id)?.imageHint,
   }));
 
   return (
@@ -97,8 +98,10 @@ export function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-30 group-hover:opacity-40"
-                  data-ai-hint={project.id.replace('-', ' ')}
+                  className={`object-cover transition-transform duration-700 group-hover:scale-110 ${
+                    project.id === "weather-app" ? "opacity-40 group-hover:opacity-60" : "opacity-30 group-hover:opacity-40"
+                  }`}
+                  data-ai-hint={project.imageHint || project.id.replace('-', ' ')}
                 />
               )}
               
@@ -121,12 +124,12 @@ export function Projects() {
 
               {/* Specialized Background Decorator for Weather App */}
               {project.id === "weather-app" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-40 transition-opacity">
                   <div className="absolute top-10 right-10 animate-pulse">
-                    <Sun className="w-16 h-16 text-yellow-400/30" />
+                    <Sun className="w-16 h-16 text-yellow-400/50" />
                   </div>
                   <div className="absolute bottom-10 left-10 animate-float" style={{ animationDelay: '1s' }}>
-                    <Cloud className="w-20 h-20 text-blue-200/20" />
+                    <Cloud className="w-20 h-20 text-blue-200/30" />
                   </div>
                 </div>
               )}
