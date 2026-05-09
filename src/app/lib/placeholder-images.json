@@ -16,8 +16,8 @@
     {
       "id": "weather-app",
       "description": "Modern weather forecast dashboard",
-      "imageUrl": "https://picsum.photos/seed/chess-board/800/600",
-      "imageHint": "chess board"
+      "imageUrl": "https://picsum.photos/seed/weather-sky/800/600",
+      "imageHint": "weather sky"
     },
     {
       "id": "snake-game",

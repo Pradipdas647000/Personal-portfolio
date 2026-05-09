@@ -122,8 +122,8 @@ export function Projects() {
                 </div>
               )}
 
-              {/* Specialized Background Decorator for Weather App (Chess aesthetic as requested) */}
-              {project.id === "weather-app" && (
+              {/* Specialized Background Decorator for Chess Game (Chess aesthetic pattern) */}
+              {project.id === "chess-game" && (
                 <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
                   <div 
                     className="absolute inset-0" 
