@@ -34,7 +34,7 @@ const projectsData = [
     tech: ["Next.js", "Tailwind"],
     size: "md",
     demoUrl: "#",
-    repoUrl: "#",
+    repoUrl: "https://github.com/Pradipdas647000/SkyCast-weather-webapp",
   },
   {
     id: "ai-drone",
