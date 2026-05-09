@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 const languages = [
   "Hello",      // English
   "नमस्ते",     // Hindi
+  "নমস্কার",    // Bengali
   "Hola",       // Spanish
   "こんにちは",  // Japanese
   "Bonjour",    // French
