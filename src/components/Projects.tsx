@@ -15,6 +15,8 @@ const projectsData = [
     desc: "Advanced real-time static analysis engine for TypeScript and JavaScript with deep AST inspection and architectural linting.",
     tech: ["React", "Node.js", "Monaco Editor", "AST"],
     size: "lg",
+    demoUrl: "https://syntax-iq-one.vercel.app/",
+    repoUrl: "#",
   },
   {
     id: "fitness-app",
@@ -22,6 +24,8 @@ const projectsData = [
     desc: "Mobile health tracker with personalized workout routines and calorie counters.",
     tech: ["Flutter", "Firebase"],
     size: "md",
+    demoUrl: "#",
+    repoUrl: "#",
   },
   {
     id: "weather-app",
@@ -29,6 +33,8 @@ const projectsData = [
     desc: "Minimalist weather dashboard with precise local data and forecast visuals.",
     tech: ["Next.js", "Tailwind"],
     size: "md",
+    demoUrl: "#",
+    repoUrl: "#",
   },
   {
     id: "ai-drone",
@@ -36,6 +42,8 @@ const projectsData = [
     desc: "Autonomous drone flight controller powered by computer vision algorithms.",
     tech: ["Python", "OpenCV", "C++"],
     size: "lg",
+    demoUrl: "#",
+    repoUrl: "#",
   },
   {
     id: "snake-game",
@@ -43,6 +51,8 @@ const projectsData = [
     desc: "A retro-themed neon snake game with procedural level generation.",
     tech: ["Java", "Swing"],
     size: "sm",
+    demoUrl: "#",
+    repoUrl: "#",
   },
   {
     id: "chess-game",
@@ -50,6 +60,8 @@ const projectsData = [
     desc: "A multiplayer strategic chess game with real-time move validation.",
     tech: ["React", "Socket.io"],
     size: "sm",
+    demoUrl: "#",
+    repoUrl: "#",
   },
 ];
 
@@ -135,13 +147,26 @@ export function Projects() {
                 </p>
                 
                 <div className="flex items-center gap-4 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button size="sm" className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
+                  <Button 
+                    asChild
+                    size="sm" 
+                    className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+                  >
+                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </a>
                   </Button>
-                  <Button size="sm" variant="outline" className="rounded-full glass border-white/10 text-white hover:bg-white/10">
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
+                  <Button 
+                    asChild
+                    size="sm" 
+                    variant="outline" 
+                    className="rounded-full glass border-white/10 text-white hover:bg-white/10"
+                  >
+                    <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4 mr-2" />
+                      Code
+                    </a>
                   </Button>
                 </div>
               </div>
