@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Terminal, Code, CheckCircle2 } from "lucide-react";
+import { ExternalLink, Github, Terminal, Code, CheckCircle2, Sun, Cloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -115,6 +115,18 @@ export function Projects() {
                   <div className="absolute bottom-10 right-10 flex gap-2">
                     <Terminal className="w-12 h-12 text-primary/40" />
                     <code className="w-12 h-12 text-accent/40" />
+                  </div>
+                </div>
+              )}
+
+              {/* Specialized Background Decorator for Weather App */}
+              {project.id === "weather-app" && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div className="absolute top-10 right-10 animate-pulse">
+                    <Sun className="w-16 h-16 text-yellow-400/30" />
+                  </div>
+                  <div className="absolute bottom-10 left-10 animate-float" style={{ animationDelay: '1s' }}>
+                    <Cloud className="w-20 h-20 text-blue-200/20" />
                   </div>
                 </div>
               )}
