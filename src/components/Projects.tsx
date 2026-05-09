@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Terminal, CheckCircle2 } from "lucide-react";
+import { ExternalLink, Github, Terminal, CheckCircle2, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -42,6 +42,7 @@ const projectsData = [
     desc: "Autonomous drone flight controller powered by computer vision algorithms.",
     tech: ["Python", "OpenCV", "C++"],
     size: "lg",
+    status: "ongoing",
     demoUrl: "#",
     repoUrl: "#",
   },
@@ -122,6 +123,22 @@ export function Projects() {
                 </div>
               )}
 
+              {/* Specialized Background Decorator for AI Drone Project (Ongoing) */}
+              {project.id === "ai-drone" && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div className="absolute top-0 right-0 p-4 font-code text-[8px] text-accent flex flex-col items-end">
+                    <p>ALT: 120m</p>
+                    <p>SPD: 45km/h</p>
+                    <p className="text-primary animate-pulse">LIDAR: ACTIVE</p>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-48 h-48 border border-accent/20 rounded-full animate-[spin_10s_linear_infinite]" />
+                    <div className="absolute w-64 h-64 border-t border-primary/20 rounded-full animate-[spin_15s_linear_infinite]" />
+                    <Cpu className="w-12 h-12 text-primary/40" />
+                  </div>
+                </div>
+              )}
+
               {/* Specialized Background Decorator for Chess Game (Chess aesthetic pattern) */}
               {project.id === "chess-game" && (
                 <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
@@ -152,6 +169,12 @@ export function Projects() {
                     <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
                       <CheckCircle2 className="w-3 h-3 mr-1" />
                       Live Analysis
+                    </Badge>
+                  )}
+                  {project.id === "ai-drone" && (
+                    <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
+                      <Terminal className="w-3 h-3 mr-1" />
+                      Research Ongoing
                     </Badge>
                   )}
                 </div>
