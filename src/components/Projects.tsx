@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Terminal, Code, CheckCircle2, Sun, Cloud } from "lucide-react";
+import { ExternalLink, Github, Terminal, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -122,15 +122,17 @@ export function Projects() {
                 </div>
               )}
 
-              {/* Specialized Background Decorator for Weather App */}
+              {/* Specialized Background Decorator for Weather App (Chess aesthetic as requested) */}
               {project.id === "weather-app" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 group-hover:opacity-40 transition-opacity">
-                  <div className="absolute top-10 right-10 animate-pulse">
-                    <Sun className="w-16 h-16 text-yellow-400/50" />
-                  </div>
-                  <div className="absolute bottom-10 left-10 animate-float" style={{ animationDelay: '1s' }}>
-                    <Cloud className="w-20 h-20 text-blue-200/30" />
-                  </div>
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div 
+                    className="absolute inset-0" 
+                    style={{ 
+                      backgroundImage: 'linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05)), linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05))',
+                      backgroundSize: '40px 40px',
+                      backgroundPosition: '0 0, 20px 20px'
+                    }} 
+                  />
                 </div>
               )}
               
