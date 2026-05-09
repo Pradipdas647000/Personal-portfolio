@@ -16,7 +16,7 @@ const projectsData = [
     tech: ["React", "Node.js", "Monaco Editor", "AST"],
     size: "lg",
     demoUrl: "https://syntax-iq-one.vercel.app/",
-    repoUrl: "#",
+    repoUrl: "https://github.com/Pradipdas647000/SyntaxIQ",
   },
   {
     id: "fitness-app",
@@ -114,7 +114,7 @@ export function Projects() {
                   </div>
                   <div className="absolute bottom-10 right-10 flex gap-2">
                     <Terminal className="w-12 h-12 text-primary/40" />
-                    <Code className="w-12 h-12 text-accent/40" />
+                    <code className="w-12 h-12 text-accent/40" />
                   </div>
                 </div>
               )}
