@@ -53,15 +53,15 @@ export function Contact() {
           </div>
 
           <div className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary">
+            <a href="mailto:daspradip1157@gmail.com" className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <Mail className="w-6 h-6" />
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Email</p>
-                <p className="text-white font-medium">daspradip1157@gmail.com</p>
+                <p className="text-white font-medium group-hover:text-primary transition-colors">daspradip1157@gmail.com</p>
               </div>
-            </div>
+            </a>
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary">
                 <MapPin className="w-6 h-6" />
@@ -71,15 +71,15 @@ export function Contact() {
                 <p className="text-white font-medium">Kolkata, India</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary">
+            <a href="tel:8371074580" className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <Phone className="w-6 h-6" />
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Phone</p>
-                <p className="text-white font-medium">8371074580</p>
+                <p className="text-white font-medium group-hover:text-primary transition-colors">8371074580</p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div className="flex space-x-4">
