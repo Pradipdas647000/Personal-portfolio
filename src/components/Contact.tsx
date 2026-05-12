@@ -35,18 +35,20 @@ export function Contact() {
       email: formData.get("user_email") as string,
       message: formData.get("message") as string,
       createdAt: serverTimestamp(),
+      recipient: "pradipdas647000@gmail.com", // Useful for Trigger Email extension
     };
 
     setIsSubmitting(true);
     
     const messagesRef = collection(db, 'messages');
     
+    // Use Firestore addDoc to save the message
     addDoc(messagesRef, data)
       .then(() => {
         setIsSubmitting(false);
         toast({
           title: "Message Sent!",
-          description: "Thank you for reaching out. I've received your message and will get back to you soon.",
+          description: "Thank you! Your message has been saved to our database. To receive this as an email, please ensure the Trigger Email extension is configured.",
         });
         formRef.current?.reset();
       })
@@ -62,7 +64,7 @@ export function Contact() {
         toast({
           variant: "destructive",
           title: "Uh oh! Something went wrong.",
-          description: "Could not send the message. Please try again later.",
+          description: "Could not save message. Please check your Firestore connection or Security Rules.",
         });
       });
   };
@@ -81,7 +83,7 @@ export function Contact() {
             <h2 className="text-sm font-headline font-bold text-accent tracking-[0.3em] uppercase mb-4">Connect</h2>
             <h3 className="text-4xl md:text-5xl font-headline font-bold text-white mb-6">Let's Create <span className="text-primary">Together</span></h3>
             <p className="text-white/60 text-lg leading-relaxed max-w-md">
-              Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and creative ideas.
+              Have a project in mind or just want to say hi? I'm now using Firebase to handle your inquiries securely and efficiently.
             </p>
           </div>
 
@@ -155,7 +157,7 @@ export function Contact() {
             <Button disabled={isSubmitting} className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
               {isSubmitting ? (
                 <>
-                  Sending...
+                  Saving...
                   <Loader2 className="w-5 h-5 ml-2 animate-spin" />
                 </>
               ) : (

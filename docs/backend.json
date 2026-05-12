@@ -9,6 +9,7 @@
         "name": { "type": "string" },
         "email": { "type": "string", "format": "email" },
         "message": { "type": "string" },
+        "recipient": { "type": "string", "format": "email" },
         "createdAt": { "type": "string", "format": "date-time" }
       },
       "required": ["name", "email", "message", "createdAt"]
