@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
-  { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "#", color: "hover:text-blue-400" },
+  { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "https://www.linkedin.com/in/pradip-das-80262a2a9?utm_source=share_via&utm_content=profile&utm_medium=member_android", color: "hover:text-blue-400" },
   { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:daspradip1157@gmail.com", color: "hover:text-red-400" },
 ];
 
