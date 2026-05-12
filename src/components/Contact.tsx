@@ -12,7 +12,7 @@ import emailjs from '@emailjs/browser';
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
-  { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "https://www.linkedin.com/in/pradip-das-80262a2a9?utm_source=share_via&utm_content=profile&utm_medium=member_android", color: "hover:text-blue-400" },
+  { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "https://www.linkedin.com/in/pradip-das-80262a2a9", color: "hover:text-blue-400" },
   { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:pradipdas647000@gmail.com", color: "hover:text-red-400" },
 ];
 
@@ -27,28 +27,30 @@ export function Contact() {
 
     setIsSubmitting(true);
     
-    // EmailJS Credentials provided by user
+    // EmailJS Credentials
     const serviceId = 'service_7d0jia9';
     const templateId = 'template_7uqw1j4';
     const publicKey = 'uNVtw9rIaOf8C-iKr';
 
+    // Note: Ensure your EmailJS template uses these variable names: 
+    // {{user_name}}, {{user_email}}, {{message}}
     emailjs.sendForm(serviceId, templateId, formRef.current, {
       publicKey: publicKey,
     })
-      .then(() => {
+      .then((result) => {
         setIsSubmitting(false);
         toast({
-          title: "Message Sent!",
-          description: "Thank you! Your message has been sent successfully to Pradip.",
+          title: "Message Sent Successfully!",
+          description: "Thank you! Pradip will get back to you soon.",
         });
         formRef.current?.reset();
       })
-      .catch(() => {
+      .catch((error) => {
         setIsSubmitting(false);
         toast({
           variant: "destructive",
-          title: "Uh oh! Something went wrong.",
-          description: "Could not send message. Please check your EmailJS configuration.",
+          title: "Failed to send message.",
+          description: "Please check your internet connection or try again later.",
         });
       });
   };
@@ -127,18 +129,38 @@ export function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Name</label>
-                <Input name="user_name" required placeholder="John Doe" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input 
+                  name="user_name" 
+                  required 
+                  placeholder="Your Name" 
+                  className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Email</label>
-                <Input name="user_email" required placeholder="john@example.com" type="email" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input 
+                  name="user_email" 
+                  required 
+                  placeholder="Your Email" 
+                  type="email" 
+                  className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" 
+                />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/60 ml-1">Message</label>
-              <Textarea name="message" required placeholder="How can I help you?" className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+              <Textarea 
+                name="message" 
+                required 
+                placeholder="How can I help you?" 
+                className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" 
+              />
             </div>
-            <Button disabled={isSubmitting} className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
+            <Button 
+              type="submit"
+              disabled={isSubmitting} 
+              className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group"
+            >
               {isSubmitting ? (
                 <>
                   Sending...
