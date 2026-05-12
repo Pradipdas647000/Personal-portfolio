@@ -44,7 +44,8 @@ export function Contact() {
     })
     .catch((error) => {
       setIsSubmitting(false);
-      console.error('EmailJS Error:', error);
+      // Removed console.error to prevent crashing the dev overlay.
+      // Error is handled via the toast notification below.
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
