@@ -63,7 +63,7 @@ export function Hero() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center pt-24 md:pt-0 px-4 md:px-6 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-20 md:pt-0 px-4 md:px-6 overflow-hidden"
     >
       {/* Background glow that follows mouse - Hidden on mobile */}
       {!isMobile && (
@@ -81,42 +81,42 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative z-10 w-full max-w-5xl"
+        className="relative z-10 w-full max-w-4xl"
       >
         <div 
-          className="glass p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center text-center space-y-8 md:space-y-10 transition-transform duration-500 ease-out shadow-2xl"
+          className="glass p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center space-y-6 md:space-y-8 transition-transform duration-500 ease-out shadow-2xl"
           style={{
             transform: isMobile ? 'none' : `perspective(1000px) rotateX(${-mousePos.y}deg) rotateY(${mousePos.x}deg)`
           }}
         >
           {/* Avatar Area */}
           <div className="relative group">
-            <div className="absolute inset-[-6px] bg-gradient-to-tr from-primary via-accent to-primary rounded-[2rem] md:rounded-[3rem] blur-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-700 animate-pulse" />
-            <div className="relative w-32 h-44 md:w-40 md:h-56 rounded-[1.8rem] md:rounded-[2.5rem] border-2 border-white/20 p-1.5 overflow-hidden glass shadow-2xl">
+            <div className="absolute inset-[-4px] bg-gradient-to-tr from-primary via-accent to-primary rounded-[1.8rem] md:rounded-[2.5rem] blur-xl opacity-40 group-hover:opacity-80 transition-opacity duration-700 animate-pulse" />
+            <div className="relative w-28 h-40 md:w-36 md:h-52 rounded-[1.6rem] md:rounded-[2.2rem] border-2 border-white/20 p-1 overflow-hidden glass shadow-2xl">
               {avatarImage ? (
                 <Image 
                   src={avatarImage}
                   alt="Pradip"
-                  width={200}
-                  height={280}
+                  width={180}
+                  height={260}
                   priority
-                  className="rounded-[1.4rem] md:rounded-[2rem] object-cover h-full w-full"
+                  className="rounded-[1.2rem] md:rounded-[1.8rem] object-cover h-full w-full"
                   data-ai-hint="man portrait"
                 />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-[1.4rem] md:rounded-[2rem]">
-                  <span className="text-primary font-satisfy text-4xl md:text-6xl">P</span>
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center rounded-[1.2rem] md:rounded-[1.8rem]">
+                  <span className="text-primary font-satisfy text-4xl md:text-5xl">P</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="space-y-4 md:space-y-6">
+          <div className="space-y-3 md:space-y-4">
             <motion.h2 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="font-satisfy text-3xl md:text-5xl"
+              className="font-satisfy text-2xl md:text-4xl"
             >
               Hi, I'm <span className="text-glow-cyan text-accent">Pradip</span>
             </motion.h2>
@@ -124,19 +124,19 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, type: "spring", damping: 15 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9] md:leading-[1.1]"
+              className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold tracking-tighter text-white leading-[0.9] md:leading-[1.1]"
             >
               Full Stack <span className="text-glow-cyan text-accent">Developer</span>
             </motion.h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-white/60 font-medium min-h-[1.5em] px-4">
+            <p className="text-lg md:text-xl lg:text-2xl text-white/60 font-medium min-h-[1.5em] px-4">
               <span className="typing-cursor">{displayText}</span>
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 w-full sm:w-auto">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary/90 text-white px-10 h-14 md:h-16 text-lg shadow-2xl shadow-primary/30 group"
+              className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary/90 text-white px-8 h-12 md:h-14 text-base shadow-2xl shadow-primary/30 group"
               onClick={() => scrollToSection('projects')}
             >
               View Projects
@@ -146,19 +146,19 @@ export function Hero() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="flex-1 sm:w-auto rounded-full glass glass-hover border-white/10 text-white px-8 h-14 md:h-16"
+                className="flex-1 sm:w-auto rounded-full glass glass-hover border-white/10 text-white px-6 h-12 md:h-14"
                 onClick={() => window.print()}
               >
-                <FileText className="w-5 h-5 mr-2" />
+                <FileText className="w-4 h-4 mr-2" />
                 Resume
               </Button>
               <Button 
                 size="lg" 
                 variant="ghost" 
-                className="flex-1 sm:w-auto rounded-full text-white/70 hover:text-white hover:bg-white/5 px-8 h-14 md:h-16"
+                className="flex-1 sm:w-auto rounded-full text-white/70 hover:text-white hover:bg-white/5 px-6 h-12 md:h-14"
                 onClick={() => scrollToSection('contact')}
               >
-                <Send className="w-5 h-5 mr-2" />
+                <Send className="w-4 h-4 mr-2" />
                 Contact
               </Button>
             </div>
