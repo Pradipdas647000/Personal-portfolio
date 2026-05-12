@@ -108,12 +108,14 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center space-x-4">
           <Button 
+            asChild
             variant="ghost" 
             className="text-white/70 hover:text-white hover:bg-white/10 rounded-full"
-            onClick={() => window.print()}
           >
-            <Download className="w-4 h-4 mr-2" />
-            Resume
+            <a href="/autocv.pdf" target="_blank" rel="noopener noreferrer">
+              <Download className="w-4 h-4 mr-2" />
+              Resume
+            </a>
           </Button>
           <Button 
             className="bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg shadow-primary/20"
@@ -165,15 +167,19 @@ export function Navbar() {
 
             <div className="mt-auto pb-12 space-y-4 border-t border-white/10 pt-8">
               <Button 
+                asChild
                 variant="outline" 
                 className="w-full h-14 rounded-2xl border-white/10 bg-white/5 text-white text-lg"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  window.print();
-                }}
               >
-                <Download className="w-5 h-5 mr-3" />
-                Resume
+                <a 
+                  href="/autocv.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Download className="w-5 h-5 mr-3" />
+                  Resume
+                </a>
               </Button>
               <Button 
                 className="w-full h-14 bg-primary text-white rounded-2xl text-lg font-bold shadow-xl shadow-primary/20"

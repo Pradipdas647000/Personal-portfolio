@@ -144,13 +144,15 @@ export function Hero() {
             </Button>
             <div className="flex gap-3 w-full sm:w-auto">
               <Button 
+                asChild
                 size="lg" 
                 variant="outline" 
                 className="flex-1 sm:w-auto rounded-full glass glass-hover border-white/10 text-white px-6 h-12 md:h-14"
-                onClick={() => window.print()}
               >
-                <FileText className="w-4 h-4 mr-2" />
-                Resume
+                <a href="/autocv.pdf" target="_blank" rel="noopener noreferrer">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Resume
+                </a>
               </Button>
               <Button 
                 size="lg" 
