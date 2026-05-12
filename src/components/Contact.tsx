@@ -23,7 +23,7 @@ export function Contact() {
 
   // EmailJS Credentials updated as per user request
   const serviceId = 'service_7d0jia9';
-  const templateId = 'template_mbojxpg';
+  const templateId = 'template_fpmdurp';
   const publicKey = 'cppoNUZkSq1FrNiJn';
 
   useEffect(() => {
@@ -39,8 +39,6 @@ export function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Using emailjs.send instead of sendForm for more explicit parameter passing
-      // This helps verify exactly what is being sent to the EmailJS server
       const templateParams = {
         user_name: formRef.current.user_name.value,
         user_email: formRef.current.user_email.value,
@@ -63,7 +61,6 @@ export function Contact() {
         formRef.current.reset();
       }
     } catch (error: any) {
-      // Detailed error reporting to help diagnose EmailJS issues
       const errorMessage = error?.text || error?.message || "Unknown error";
       toast({
         variant: "destructive",
