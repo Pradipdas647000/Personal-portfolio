@@ -31,11 +31,14 @@ export function Contact() {
     // Service ID: service_7d0jia9
     // Template ID: template_7uqw1j4
     // Public Key: uNVtw9rIaOf8C-iKr
+    
     emailjs.sendForm(
       'service_7d0jia9', 
       'template_7uqw1j4', 
       formRef.current, 
-      'uNVtw9rIaOf8C-iKr'
+      {
+        publicKey: 'uNVtw9rIaOf8C-iKr',
+      }
     )
     .then(() => {
       setIsSubmitting(false);
@@ -47,10 +50,11 @@ export function Contact() {
     })
     .catch((error) => {
       setIsSubmitting(false);
+      // We avoid console.error here to prevent Next.js dev overlay from interrupting the user
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Could not send the message. Please check your connection and try again.",
+        description: error?.text || "Could not send the message. Please check your credentials and connection.",
       });
     });
   };
