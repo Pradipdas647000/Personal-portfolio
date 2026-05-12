@@ -2,8 +2,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send, MapPin, Phone, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Linkedin, Mail, Send, MapPin, Phone, Loader2, CheckCircle2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,9 +19,10 @@ const socials = [
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessCard, setShowSuccessCard] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // EmailJS Credentials updated as per user request
+  // EmailJS Credentials
   const serviceId = 'service_7d0jia9';
   const templateId = 'template_fpmdurp';
   const publicKey = 'cppoNUZkSq1FrNiJn';
@@ -54,10 +55,7 @@ export function Contact() {
       );
 
       if (result.status === 200) {
-        toast({
-          title: "Message Sent Successfully!",
-          description: "Thank you! I will get back to you soon at pradipdas647000@gmail.com.",
-        });
+        setShowSuccessCard(true);
         formRef.current.reset();
       }
     } catch (error: any) {
@@ -65,7 +63,7 @@ export function Contact() {
       toast({
         variant: "destructive",
         title: "Failed to send message",
-        description: `Error: ${errorMessage}. Please verify your Template ID (${templateId}) and Service ID (${serviceId}) in EmailJS.`,
+        description: `Error: ${errorMessage}. Please check your credentials.`,
       });
     } finally {
       setIsSubmitting(false);
@@ -73,7 +71,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="contact" className="py-24 px-6 max-w-7xl mx-auto relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -193,6 +191,51 @@ export function Contact() {
           </form>
         </motion.div>
       </div>
+
+      {/* Success Popup Card */}
+      <AnimatePresence>
+        {showSuccessCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              className="glass max-w-md w-full p-8 md:p-12 rounded-[2.5rem] text-center relative overflow-hidden shadow-2xl border-white/20"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-16 -mt-16" />
+              
+              <button 
+                onClick={() => setShowSuccessCard(false)}
+                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center text-primary mx-auto mb-8 shadow-inner">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+
+              <h3 className="font-satisfy text-4xl text-white mb-4 text-glow-cyan">Thank You!</h3>
+              <p className="text-white/70 text-lg leading-relaxed mb-8">
+                Your message has been received successfully. I will get back to you soon at <span className="text-accent font-semibold">pradipdas647000@gmail.com</span>.
+              </p>
+
+              <Button 
+                onClick={() => setShowSuccessCard(false)}
+                className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20"
+              >
+                Awesome
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
+
