@@ -27,14 +27,12 @@ export function Contact() {
 
     setIsSubmitting(true);
     
-    // To make this fully functional, replace these placeholders with your actual EmailJS credentials:
-    // Service ID, Template ID, and Public Key.
-    // The email will be sent to the address configured in your EmailJS template.
+    // Using user provided EmailJS credentials
     emailjs.sendForm(
-      'YOUR_SERVICE_ID', 
-      'YOUR_TEMPLATE_ID', 
+      'service_7d0jia9', 
+      'template_7uqw1j4', 
       formRef.current, 
-      'YOUR_PUBLIC_KEY'
+      'uNVtw9rIaOf8C-iKr'
     )
     .then(() => {
       setIsSubmitting(false);
