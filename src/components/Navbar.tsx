@@ -58,12 +58,14 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-4 md:px-12",
-        isScrolled || isMobileMenuOpen ? "bg-background/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-4 px-4 md:px-12",
+        isScrolled || isMobileMenuOpen 
+          ? "bg-black md:bg-background/60 md:backdrop-blur-xl border-b border-white/5" 
+          : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center space-x-2 relative z-[60]">
+        <a href="#" className="flex items-center space-x-2 relative z-[110]">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
             <span className="font-satisfy text-lg text-white">PD</span>
           </div>
@@ -123,7 +125,7 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white p-2 glass rounded-lg relative z-[60]"
+          className="md:hidden text-white p-2 glass rounded-lg relative z-[110] bg-white/5 border-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -135,20 +137,20 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, clipPath: 'circle(0% at 90% 5%)' }}
-            animate={{ opacity: 1, clipPath: 'circle(150% at 90% 5%)' }}
-            exit={{ opacity: 0, clipPath: 'circle(0% at 90% 5%)' }}
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="md:hidden fixed inset-0 bg-background/98 backdrop-blur-3xl z-50 flex flex-col pt-24 px-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden fixed inset-0 bg-black z-[105] flex flex-col pt-24 px-8"
           >
             <div className="flex flex-col space-y-6">
               {navLinks.map((link, idx) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 * idx }}
+                  transition={{ delay: 0.05 * idx }}
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMobileMenuOpen(false);
