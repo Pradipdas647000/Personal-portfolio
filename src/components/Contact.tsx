@@ -10,9 +10,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const socials = [
-  { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "#", color: "hover:text-white" },
+  { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
   { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "#", color: "hover:text-blue-400" },
-  { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:pradip@example.com", color: "hover:text-red-400" },
+  { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:daspradip1157@gmail.com", color: "hover:text-red-400" },
 ];
 
 export function Contact() {
@@ -59,7 +59,7 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Email</p>
-                <p className="text-white font-medium">hello@pradip.dev</p>
+                <p className="text-white font-medium">daspradip1157@gmail.com</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -68,7 +68,7 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Location</p>
-                <p className="text-white font-medium">Indore, India</p>
+                <p className="text-white font-medium">Kolkata, India</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -77,7 +77,7 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Phone</p>
-                <p className="text-white font-medium">+91 98765 43210</p>
+                <p className="text-white font-medium">8371074580</p>
               </div>
             </div>
           </div>
@@ -87,6 +87,8 @@ export function Contact() {
               <a
                 key={social.label}
                 href={social.href}
+                target={social.href.startsWith('http') ? "_blank" : undefined}
+                rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
                 className={`w-14 h-14 rounded-2xl glass flex items-center justify-center transition-all duration-300 text-white/50 ${social.color} hover:scale-110 hover:border-primary/50`}
               >
                 {social.icon}
