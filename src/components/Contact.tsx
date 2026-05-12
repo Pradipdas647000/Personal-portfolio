@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send, MapPin, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,18 +21,22 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
+  // EmailJS Credentials provided by user
+  const serviceId = 'service_7d0jia9';
+  const templateId = 'template_mbojxpg';
+  const publicKey = 'cppoNUZkSq1FrNiJn';
+
+  useEffect(() => {
+    emailjs.init(publicKey);
+  }, [publicKey]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
     setIsSubmitting(true);
     
-    // EmailJS Credentials
-    const serviceId = 'service_7d0jia9';
-    const templateId = 'template_mbojxpg';
-    const publicKey = 'cppoNUZkSq1FrNiJn';
-
-    // Note: Ensure your EmailJS template uses these variable names: 
+    // Ensure your EmailJS template uses these variable names: 
     // {{user_name}}, {{user_email}}, {{message}}
     emailjs.sendForm(serviceId, templateId, formRef.current, {
       publicKey: publicKey,
@@ -50,7 +54,7 @@ export function Contact() {
         toast({
           variant: "destructive",
           title: "Failed to send message.",
-          description: "Please check your credentials or internet connection.",
+          description: error?.text || "Please check your credentials (Service ID, Template ID, Public Key) or internet connection.",
         });
       });
   };
