@@ -27,36 +27,43 @@ export function Contact() {
   const publicKey = 'cppoNUZkSq1FrNiJn';
 
   useEffect(() => {
-    emailjs.init(publicKey);
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
   }, [publicKey]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
     setIsSubmitting(true);
     
-    // Ensure your EmailJS template uses these variable names: 
-    // {{user_name}}, {{user_email}}, {{message}}
-    emailjs.sendForm(serviceId, templateId, formRef.current, {
-      publicKey: publicKey,
-    })
-      .then((result) => {
-        setIsSubmitting(false);
+    try {
+      // Using sendForm with explicit publicKey in options for V4 support
+      const result = await emailjs.sendForm(
+        serviceId, 
+        templateId, 
+        formRef.current, 
+        { publicKey: publicKey }
+      );
+
+      if (result.status === 200) {
         toast({
           title: "Message Sent Successfully!",
-          description: "Thank you! Pradip will get back to you soon.",
+          description: "Thank you! I will get back to you soon at pradipdas647000@gmail.com.",
         });
-        formRef.current?.reset();
-      })
-      .catch((error) => {
-        setIsSubmitting(false);
-        toast({
-          variant: "destructive",
-          title: "Failed to send message.",
-          description: error?.text || "Please check your credentials (Service ID, Template ID, Public Key) or internet connection.",
-        });
+        formRef.current.reset();
+      }
+    } catch (error: any) {
+      // We avoid console.error to prevent NextJS dev overlay, showing info in toast instead
+      toast({
+        variant: "destructive",
+        title: "Failed to send message",
+        description: error?.text || "Please check your EmailJS settings or internet connection.",
       });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
