@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from '@emailjs/browser';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useFirestore } from "@/firebase";
+import { errorEmitter } from "@/firebase/error-emitter";
+import { FirestorePermissionError } from "@/firebase/errors";
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
@@ -20,43 +23,48 @@ export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const db = useFirestore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
+    const formData = new FormData(formRef.current);
+    const data = {
+      name: formData.get("user_name") as string,
+      email: formData.get("user_email") as string,
+      message: formData.get("message") as string,
+      createdAt: serverTimestamp(),
+    };
+
     setIsSubmitting(true);
     
-    // Credentials provided by the user:
-    // Service ID: service_7d0jia9
-    // Template ID: template_7uqw1j4
-    // Public Key: uNVtw9rIaOf8C-iKr
+    const messagesRef = collection(db, 'messages');
     
-    emailjs.sendForm(
-      'service_7d0jia9', 
-      'template_7uqw1j4', 
-      formRef.current, 
-      {
-        publicKey: 'uNVtw9rIaOf8C-iKr',
-      }
-    )
-    .then(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+    addDoc(messagesRef, data)
+      .then(() => {
+        setIsSubmitting(false);
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. I've received your message and will get back to you soon.",
+        });
+        formRef.current?.reset();
+      })
+      .catch(async (serverError) => {
+        setIsSubmitting(false);
+        const permissionError = new FirestorePermissionError({
+          path: messagesRef.path,
+          operation: 'create',
+          requestResourceData: data,
+        });
+        errorEmitter.emit('permission-error', permissionError);
+        
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "Could not send the message. Please try again later.",
+        });
       });
-      formRef.current?.reset();
-    })
-    .catch((error) => {
-      setIsSubmitting(false);
-      // We avoid console.error here to prevent Next.js dev overlay from interrupting the user
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: error?.text || "Could not send the message. Please check your credentials and connection.",
-      });
-    });
   };
 
   return (
@@ -112,8 +120,8 @@ export function Contact() {
               <a
                 key={social.label}
                 href={social.href}
-                target={social.href.startsWith('http') ? "_blank" : undefined}
-                rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-14 h-14 rounded-2xl glass flex items-center justify-center transition-all duration-300 text-white/50 ${social.color} hover:scale-110 hover:border-primary/50`}
               >
                 {social.icon}
