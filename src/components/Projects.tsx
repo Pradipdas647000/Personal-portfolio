@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Terminal, CheckCircle2, Cpu } from "lucide-react";
+import { ExternalLink, Github, Terminal, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -12,7 +12,7 @@ const projectsData = [
   {
     id: "syntax-checker",
     title: "Syntax Checker",
-    desc: "Advanced real-time static analysis engine for TypeScript and JavaScript with deep AST inspection and architectural linting.",
+    desc: "Advanced real-time static analysis engine for TypeScript and JavaScript with deep AST inspection.",
     tech: ["React", "Node.js", "Monaco Editor", "AST"],
     size: "lg",
     demoUrl: "https://syntax-iq-one.vercel.app/",
@@ -68,7 +68,6 @@ const projectsData = [
 
 export function Projects() {
   const projects = projectsData.map(p => {
-    // Determine which image/hint to show based on the theme swap request
     let targetImageId = p.id;
     if (p.id === "weather-app") targetImageId = "chess-game";
     if (p.id === "chess-game") targetImageId = "weather-app";
@@ -81,13 +80,13 @@ export function Projects() {
   });
 
   return (
-    <section id="projects" className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="mb-16">
+    <section id="projects" className="py-24 px-4 md:px-6 max-w-7xl mx-auto">
+      <div className="mb-12 md:mb-16">
         <h2 className="text-sm font-headline font-bold text-accent tracking-[0.3em] uppercase mb-4">Showcase</h2>
-        <h3 className="text-4xl md:text-5xl font-headline font-bold text-white">Featured <span className="text-primary">Creations</span></h3>
+        <h3 className="text-3xl md:text-5xl font-headline font-bold text-white leading-tight">Featured <span className="text-primary">Creations</span></h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto md:auto-rows-[300px]">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -95,7 +94,7 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
-            className={`group relative glass rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/40 transition-all duration-500 shadow-2xl ${
+            className={`group relative glass rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/40 transition-all duration-500 shadow-2xl min-h-[300px] ${
               project.size === 'lg' ? 'md:col-span-2' : ''
             }`}
           >
@@ -106,109 +105,50 @@ export function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-30 group-hover:opacity-40"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-20 md:opacity-30 group-hover:opacity-40"
                   data-ai-hint={project.imageHint || project.id.replace('-', ' ')}
                 />
               )}
               
-              {/* Specialized Background Decorator for Syntax Checker */}
-              {project.id === "syntax-checker" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div className="absolute top-10 left-10 font-code text-[10px] text-accent space-y-1">
-                    <p>const analyze = (node) =&gt; &#123;</p>
-                    <p className="pl-4">if (node.type === "Identifier") &#123;</p>
-                    <p className="pl-8 text-primary">return validate(node.name);</p>
-                    <p className="pl-4">&#125;</p>
-                    <p>&#125;</p>
-                  </div>
-                  <div className="absolute bottom-10 right-10 flex gap-2">
-                    <Terminal className="w-12 h-12 text-primary/40" />
-                  </div>
-                </div>
-              )}
-
-              {/* Specialized Background Decorator for Weather App (SWAPPED Chess aesthetic) */}
-              {project.id === "weather-app" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div 
-                    className="absolute inset-0" 
-                    style={{ 
-                      backgroundImage: 'linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05)), linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05))',
-                      backgroundSize: '40px 40px',
-                      backgroundPosition: '0 0, 20px 20px'
-                    }} 
-                  />
-                </div>
-              )}
-
-              {/* Specialized Background Decorator for Chess Game (SWAPPED Weather aesthetic) */}
-              {project.id === "chess-game" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div className="absolute top-10 right-10 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl animate-pulse" />
-                  <div className="absolute bottom-10 left-10 w-32 h-16 bg-white/10 rounded-full blur-xl animate-float" />
-                </div>
-              )}
-
-              {/* Specialized Background Decorator for AI Drone Project */}
-              {project.id === "ai-drone" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div className="absolute top-0 right-0 p-4 font-code text-[8px] text-accent flex flex-col items-end">
-                    <p>ALT: 120m</p>
-                    <p>SPD: 45km/h</p>
-                    <p className="text-primary animate-pulse">LIDAR: ACTIVE</p>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-48 h-48 border border-accent/20 rounded-full animate-[spin_10s_linear_infinite]" />
-                    <Cpu className="w-12 h-12 text-primary/40" />
-                  </div>
-                </div>
-              )}
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
             </div>
 
             {/* Content layer */}
-            <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
-              <div className="space-y-3 transform transition-transform duration-500 group-hover:translate-y-[-10px]">
+            <div className="absolute inset-0 z-10 p-6 md:p-8 flex flex-col justify-end">
+              <div className="space-y-3 transform transition-transform duration-500 md:group-hover:translate-y-[-10px]">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map(t => (
                     <Badge key={t} variant="secondary" className="bg-white/5 backdrop-blur-md text-[10px] text-white/80 border-white/10 uppercase tracking-tighter">
                       {t}
                     </Badge>
                   ))}
-                  {project.id === "ai-drone" && (
-                    <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
-                      <Terminal className="w-3 h-3 mr-1" />
-                      Research Ongoing
-                    </Badge>
-                  )}
                 </div>
-                <h4 className="text-2xl md:text-3xl font-headline font-bold text-white flex items-center gap-2">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-headline font-bold text-white flex items-center gap-2">
                   {project.title}
                 </h4>
-                <p className="text-white/60 text-sm line-clamp-2 max-w-md">
+                <p className="text-white/60 text-xs md:text-sm line-clamp-2 max-w-md">
                   {project.desc}
                 </p>
                 
-                <div className="flex items-center gap-4 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex items-center gap-3 md:gap-4 pt-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <Button 
                     asChild
                     size="sm" 
-                    className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+                    className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 h-9 px-4"
                   >
                     <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
+                      <ExternalLink className="w-3.5 h-3.5 mr-2" />
+                      Demo
                     </a>
                   </Button>
                   <Button 
                     asChild
                     size="sm" 
                     variant="outline" 
-                    className="rounded-full glass border-white/10 text-white hover:bg-white/10"
+                    className="rounded-full glass border-white/10 text-white hover:bg-white/10 h-9 px-4"
                   >
                     <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-2" />
+                      <Github className="w-3.5 h-3.5 mr-2" />
                       Code
                     </a>
                   </Button>

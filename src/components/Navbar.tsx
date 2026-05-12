@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Download, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -39,8 +39,8 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-6 md:px-12",
-        isScrolled ? "bg-background/40 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-4 md:px-12",
+        isScrolled ? "bg-background/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -48,10 +48,10 @@ export function Navbar() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
             <span className="font-satisfy text-lg text-white">PD</span>
           </div>
-          <span className="font-satisfy text-xl tracking-tight hidden sm:block text-white">Pradip</span>
+          <span className="font-satisfy text-xl tracking-tight hidden xs:block text-white">Pradip</span>
         </a>
 
-        {/* Desktop Nav with Liquid Glass Effect */}
+        {/* Desktop Nav */}
         <div 
           className="hidden md:flex items-center glass p-1 rounded-full border border-white/10 relative"
           onMouseLeave={() => setHoveredIndex(null)}
@@ -73,16 +73,11 @@ export function Navbar() {
               {hoveredIndex === idx && (
                 <motion.div
                   layoutId="navbar-liquid-bg"
-                  className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+                  className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-full border border-white/20"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 400, 
-                    damping: 30,
-                    opacity: { duration: 0.2 }
-                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
               {link.name}
@@ -109,54 +104,62 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-2 glass rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle Menu"
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[72px] bg-background/95 backdrop-blur-xl z-40 p-6 flex flex-col space-y-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                scrollToSection(link.href);
-              }}
-              className="text-2xl font-headline font-semibold text-white/70 hover:text-white"
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
-            <Button 
-              variant="outline" 
-              className="w-full rounded-xl border-white/10 bg-white/5 text-white"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                window.print();
-              }}
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Resume
-            </Button>
-            <Button 
-              className="w-full bg-primary text-white rounded-xl"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                scrollToSection('#contact');
-              }}
-            >
-              Contact Me
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden fixed inset-0 top-[72px] bg-background/95 backdrop-blur-2xl z-40 p-6 flex flex-col space-y-6 overflow-y-auto"
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  scrollToSection(link.href);
+                }}
+                className="text-2xl font-headline font-semibold text-white/70 hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+            <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
+              <Button 
+                variant="outline" 
+                className="w-full h-12 rounded-xl border-white/10 bg-white/5 text-white"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.print();
+                }}
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Resume
+              </Button>
+              <Button 
+                className="w-full h-12 bg-primary text-white rounded-xl"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  scrollToSection('#contact');
+                }}
+              >
+                Contact Me
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
