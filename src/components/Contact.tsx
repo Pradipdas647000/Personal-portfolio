@@ -29,8 +29,8 @@ export function Contact() {
     
     // EmailJS Credentials
     const serviceId = 'service_7d0jia9';
-    const templateId = 'template_7uqw1j4';
-    const publicKey = 'uNVtw9rIaOf8C-iKr';
+    const templateId = 'template_mbojxpg';
+    const publicKey = 'cppoNUZkSq1FrNiJn';
 
     // Note: Ensure your EmailJS template uses these variable names: 
     // {{user_name}}, {{user_email}}, {{message}}
@@ -50,7 +50,7 @@ export function Contact() {
         toast({
           variant: "destructive",
           title: "Failed to send message.",
-          description: "Please check your internet connection or try again later.",
+          description: "Please check your credentials or internet connection.",
         });
       });
   };
