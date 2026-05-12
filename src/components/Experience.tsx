@@ -34,7 +34,7 @@ const experiences = [
     role: "AI & Research Projects",
     company: "Academic / Research Lab",
     location: "Research Domain",
-    period: "2024 - 2025",
+    period: "2026 - Present",
     description: [
       "Worked on deep learning and UAV-based research projects involving drone image analysis and land area estimation.",
       "Developed AI-powered solutions for real-world applications including computer vision models for image recognition.",
