@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -6,40 +7,40 @@ import { Badge } from "@/components/ui/badge";
 
 const experiences = [
   {
-    role: "Senior Full Stack Developer",
-    company: "TechNova Solutions",
+    role: "Software Tester Intern",
+    company: "Excite Foundry Ltd",
     location: "Remote",
+    period: "July 2025 - July 2025",
+    description: [
+      "Worked on the Superchargeme project, testing AI-generated outputs and contributing to quality assurance processes.",
+      "Analyzed system outputs and contributed to real-world software workflows while collaborating with a professional development team.",
+      "Gained hands-on experience in software testing, analytical problem-solving, and real-world industry workflows."
+    ],
+    tech: ["Software Testing", "AI QA", "Superchargeme", "QA Workflow"]
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Professional Freelance / Projects",
+    location: "Indore, India",
     period: "2023 - Present",
     description: [
-      "Leading the development of a high-performance SaaS dashboard using Next.js 15 and Genkit AI.",
-      "Optimized database queries in MongoDB resulting in a 40% reduction in API response times.",
-      "Mentoring a team of 5 junior developers and implementing modern CI/CD workflows."
+      "Built modern web and mobile applications using React, Next.js, Node.js, Flutter, MongoDB, and Firebase.",
+      "Focused on creating responsive UIs, seamless backend integrations, and interactive user experiences.",
+      "Developed high-performance digital experiences tailored to complex project requirements."
     ],
-    tech: ["Next.js", "TypeScript", "Tailwind", "Firebase", "Genkit"]
+    tech: ["React", "Next.js", "Node.js", "Flutter", "MongoDB", "Firebase"]
   },
   {
-    role: "Web Developer Intern",
-    company: "Digital Horizon Studio",
-    location: "Indore, India",
-    period: "2022 - 2023",
+    role: "AI & Research Projects",
+    company: "Academic / Research Lab",
+    location: "Research Domain",
+    period: "2024 - 2025",
     description: [
-      "Developed responsive UI components using React and ShadCN UI.",
-      "Integrated third-party APIs for real-time data visualization features.",
-      "Collaborated with UX designers to improve mobile accessibility and performance."
+      "Worked on deep learning and UAV-based research projects involving drone image analysis and land area estimation.",
+      "Developed AI-powered solutions for real-world applications including computer vision models for image recognition.",
+      "Implemented advanced algorithms for UAV-based land assessment and automated monitoring systems."
     ],
-    tech: ["React", "JavaScript", "Node.js", "Express", "CSS"]
-  },
-  {
-    role: "Open Source Contributor",
-    company: "GitHub / Community Projects",
-    location: "Global",
-    period: "2021 - 2022",
-    description: [
-      "Contributed to several widely-used libraries in the React ecosystem.",
-      "Authored documentation and fixed critical security vulnerabilities in community modules.",
-      "Built and maintained a niche UI utility library with over 500+ monthly downloads."
-    ],
-    tech: ["TypeScript", "Git", "Markdown", "Vitest"]
+    tech: ["Python", "Deep Learning", "UAV", "Drone Analysis", "OpenCV"]
   }
 ];
 

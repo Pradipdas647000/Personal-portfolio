@@ -67,11 +67,18 @@ const projectsData = [
 ];
 
 export function Projects() {
-  const projects = projectsData.map(p => ({
-    ...p,
-    image: PlaceHolderImages.find(img => img.id === p.id)?.imageUrl,
-    imageHint: PlaceHolderImages.find(img => img.id === p.id)?.imageHint,
-  }));
+  const projects = projectsData.map(p => {
+    // Determine which image/hint to show based on the theme swap request
+    let targetImageId = p.id;
+    if (p.id === "weather-app") targetImageId = "chess-game";
+    if (p.id === "chess-game") targetImageId = "weather-app";
+
+    return {
+      ...p,
+      image: PlaceHolderImages.find(img => img.id === targetImageId)?.imageUrl,
+      imageHint: PlaceHolderImages.find(img => img.id === targetImageId)?.imageHint,
+    };
+  });
 
   return (
     <section id="projects" className="py-24 px-6 max-w-7xl mx-auto">
@@ -99,9 +106,7 @@ export function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className={`object-cover transition-transform duration-700 group-hover:scale-110 ${
-                    project.id === "weather-app" ? "opacity-40 group-hover:opacity-60" : "opacity-30 group-hover:opacity-40"
-                  }`}
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-30 group-hover:opacity-40"
                   data-ai-hint={project.imageHint || project.id.replace('-', ' ')}
                 />
               )}
@@ -118,29 +123,12 @@ export function Projects() {
                   </div>
                   <div className="absolute bottom-10 right-10 flex gap-2">
                     <Terminal className="w-12 h-12 text-primary/40" />
-                    <code className="w-12 h-12 text-accent/40" />
                   </div>
                 </div>
               )}
 
-              {/* Specialized Background Decorator for AI Drone Project (Ongoing) */}
-              {project.id === "ai-drone" && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div className="absolute top-0 right-0 p-4 font-code text-[8px] text-accent flex flex-col items-end">
-                    <p>ALT: 120m</p>
-                    <p>SPD: 45km/h</p>
-                    <p className="text-primary animate-pulse">LIDAR: ACTIVE</p>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-48 h-48 border border-accent/20 rounded-full animate-[spin_10s_linear_infinite]" />
-                    <div className="absolute w-64 h-64 border-t border-primary/20 rounded-full animate-[spin_15s_linear_infinite]" />
-                    <Cpu className="w-12 h-12 text-primary/40" />
-                  </div>
-                </div>
-              )}
-
-              {/* Specialized Background Decorator for Chess Game (Chess aesthetic pattern) */}
-              {project.id === "chess-game" && (
+              {/* Specialized Background Decorator for Weather App (SWAPPED Chess aesthetic) */}
+              {project.id === "weather-app" && (
                 <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
                   <div 
                     className="absolute inset-0" 
@@ -150,6 +138,29 @@ export function Projects() {
                       backgroundPosition: '0 0, 20px 20px'
                     }} 
                   />
+                </div>
+              )}
+
+              {/* Specialized Background Decorator for Chess Game (SWAPPED Weather aesthetic) */}
+              {project.id === "chess-game" && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div className="absolute top-10 right-10 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl animate-pulse" />
+                  <div className="absolute bottom-10 left-10 w-32 h-16 bg-white/10 rounded-full blur-xl animate-float" />
+                </div>
+              )}
+
+              {/* Specialized Background Decorator for AI Drone Project */}
+              {project.id === "ai-drone" && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity">
+                  <div className="absolute top-0 right-0 p-4 font-code text-[8px] text-accent flex flex-col items-end">
+                    <p>ALT: 120m</p>
+                    <p>SPD: 45km/h</p>
+                    <p className="text-primary animate-pulse">LIDAR: ACTIVE</p>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-48 h-48 border border-accent/20 rounded-full animate-[spin_10s_linear_infinite]" />
+                    <Cpu className="w-12 h-12 text-primary/40" />
+                  </div>
                 </div>
               )}
               
@@ -165,12 +176,6 @@ export function Projects() {
                       {t}
                     </Badge>
                   ))}
-                  {project.id === "syntax-checker" && (
-                    <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
-                      <CheckCircle2 className="w-3 h-3 mr-1" />
-                      Live Analysis
-                    </Badge>
-                  )}
                   {project.id === "ai-drone" && (
                     <Badge variant="outline" className="border-accent/30 text-accent text-[9px] animate-pulse">
                       <Terminal className="w-3 h-3 mr-1" />
@@ -180,7 +185,6 @@ export function Projects() {
                 </div>
                 <h4 className="text-2xl md:text-3xl font-headline font-bold text-white flex items-center gap-2">
                   {project.title}
-                  {project.id === "syntax-checker" && <Terminal className="w-6 h-6 text-primary" />}
                 </h4>
                 <p className="text-white/60 text-sm line-clamp-2 max-w-md">
                   {project.desc}
