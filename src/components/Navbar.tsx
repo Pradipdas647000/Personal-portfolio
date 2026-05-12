@@ -28,11 +28,30 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const targetId = id.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
@@ -40,11 +59,11 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-4 md:px-12",
-        isScrolled ? "bg-background/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
+        isScrolled || isMobileMenuOpen ? "bg-background/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center space-x-2">
+        <a href="#" className="flex items-center space-x-2 relative z-[60]">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
             <span className="font-satisfy text-lg text-white">PD</span>
           </div>
@@ -104,7 +123,7 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white p-2 glass rounded-lg"
+          className="md:hidden text-white p-2 glass rounded-lg relative z-[60]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -116,42 +135,49 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden fixed inset-0 top-[72px] bg-background/95 backdrop-blur-2xl z-40 p-6 flex flex-col space-y-6 overflow-y-auto"
+            initial={{ opacity: 0, clipPath: 'circle(0% at 90% 5%)' }}
+            animate={{ opacity: 1, clipPath: 'circle(150% at 90% 5%)' }}
+            exit={{ opacity: 0, clipPath: 'circle(0% at 90% 5%)' }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            className="md:hidden fixed inset-0 bg-background/98 backdrop-blur-3xl z-50 flex flex-col pt-24 px-8"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  scrollToSection(link.href);
-                }}
-                className="text-2xl font-headline font-semibold text-white/70 hover:text-white transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-            <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
+            <div className="flex flex-col space-y-6">
+              {navLinks.map((link, idx) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * idx }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    setTimeout(() => scrollToSection(link.href), 300);
+                  }}
+                  className="text-4xl font-headline font-bold text-white/70 hover:text-white transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="mt-auto pb-12 space-y-4 border-t border-white/10 pt-8">
               <Button 
                 variant="outline" 
-                className="w-full h-12 rounded-xl border-white/10 bg-white/5 text-white"
+                className="w-full h-14 rounded-2xl border-white/10 bg-white/5 text-white text-lg"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   window.print();
                 }}
               >
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="w-5 h-5 mr-3" />
                 Resume
               </Button>
               <Button 
-                className="w-full h-12 bg-primary text-white rounded-xl"
+                className="w-full h-14 bg-primary text-white rounded-2xl text-lg font-bold shadow-xl shadow-primary/20"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  scrollToSection('#contact');
+                  setTimeout(() => scrollToSection('#contact'), 300);
                 }}
               >
                 Contact Me
