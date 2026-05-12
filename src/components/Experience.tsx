@@ -10,7 +10,7 @@ const experiences = [
     role: "Software Tester Intern",
     company: "Excite Foundry Ltd",
     location: "Remote",
-    period: "July 2025 - July 2025",
+    period: "July 2025",
     description: [
       "Worked on the Superchargeme project, testing AI-generated outputs and contributing to quality assurance processes.",
       "Analyzed system outputs and contributed to real-world software workflows while collaborating with a professional development team.",
