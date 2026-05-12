@@ -81,10 +81,10 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative z-10 w-full max-w-6xl"
+        className="relative z-10 w-full max-w-5xl"
       >
         <div 
-          className="glass p-8 md:p-16 lg:p-20 rounded-[2.5rem] md:rounded-[4rem] flex flex-col items-center text-center space-y-8 md:space-y-12 transition-transform duration-500 ease-out shadow-2xl"
+          className="glass p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center text-center space-y-8 md:space-y-10 transition-transform duration-500 ease-out shadow-2xl"
           style={{
             transform: isMobile ? 'none' : `perspective(1000px) rotateX(${-mousePos.y}deg) rotateY(${mousePos.x}deg)`
           }}
@@ -92,7 +92,7 @@ export function Hero() {
           {/* Avatar Area */}
           <div className="relative group">
             <div className="absolute inset-[-6px] bg-gradient-to-tr from-primary via-accent to-primary rounded-[2rem] md:rounded-[3rem] blur-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-700 animate-pulse" />
-            <div className="relative w-32 h-44 md:w-48 md:h-64 rounded-[1.8rem] md:rounded-[2.5rem] border-2 border-white/20 p-1.5 overflow-hidden glass shadow-2xl">
+            <div className="relative w-32 h-44 md:w-40 md:h-56 rounded-[1.8rem] md:rounded-[2.5rem] border-2 border-white/20 p-1.5 overflow-hidden glass shadow-2xl">
               {avatarImage ? (
                 <Image 
                   src={avatarImage}
@@ -124,11 +124,11 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, type: "spring", damping: 15 }}
-              className="text-5xl md:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9] md:leading-[1.1]"
+              className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold tracking-tighter text-white leading-[0.9] md:leading-[1.1]"
             >
               Full Stack <span className="text-glow-cyan text-accent">Developer</span>
             </motion.h1>
-            <p className="text-xl md:text-3xl text-white/60 font-medium min-h-[1.5em] px-4">
+            <p className="text-xl md:text-2xl lg:text-3xl text-white/60 font-medium min-h-[1.5em] px-4">
               <span className="typing-cursor">{displayText}</span>
             </p>
           </div>
