@@ -13,7 +13,7 @@ import emailjs from '@emailjs/browser';
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
   { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn", href: "https://www.linkedin.com/in/pradip-das-80262a2a9?utm_source=share_via&utm_content=profile&utm_medium=member_android", color: "hover:text-blue-400" },
-  { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:daspradip1157@gmail.com", color: "hover:text-red-400" },
+  { icon: <Mail className="w-6 h-6" />, label: "Email", href: "mailto:pradipdas647000@gmail.com", color: "hover:text-red-400" },
 ];
 
 export function Contact() {
@@ -27,7 +27,7 @@ export function Contact() {
 
     setIsSubmitting(true);
     
-    // Using user provided EmailJS credentials
+    // Credentials provided by the user:
     // Service ID: service_7d0jia9
     // Template ID: template_7uqw1j4
     // Public Key: uNVtw9rIaOf8C-iKr
@@ -78,13 +78,13 @@ export function Contact() {
           </div>
 
           <div className="space-y-6">
-            <a href="mailto:daspradip1157@gmail.com" className="flex items-center space-x-4 group">
+            <a href="mailto:pradipdas647000@gmail.com" className="flex items-center space-x-4 group">
               <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <Mail className="w-6 h-6" />
               </div>
               <div>
                 <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Email</p>
-                <p className="text-white font-medium group-hover:text-primary transition-colors">daspradip1157@gmail.com</p>
+                <p className="text-white font-medium group-hover:text-primary transition-colors">pradipdas647000@gmail.com</p>
               </div>
             </a>
             <div className="flex items-center space-x-4">
