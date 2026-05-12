@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { useFirestore } from "@/firebase";
-import { errorEmitter } from "@/firebase/error-emitter";
-import { FirestorePermissionError } from "@/firebase/errors";
+import emailjs from '@emailjs/browser';
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
@@ -23,48 +20,35 @@ export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const db = useFirestore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
-    const formData = new FormData(formRef.current);
-    const data = {
-      name: formData.get("user_name") as string,
-      email: formData.get("user_email") as string,
-      message: formData.get("message") as string,
-      createdAt: serverTimestamp(),
-      recipient: "pradipdas647000@gmail.com", // Useful for Trigger Email extension
-    };
-
     setIsSubmitting(true);
     
-    const messagesRef = collection(db, 'messages');
-    
-    // Use Firestore addDoc to save the message
-    addDoc(messagesRef, data)
+    // EmailJS Credentials provided by user
+    const serviceId = 'service_7d0jia9';
+    const templateId = 'template_7uqw1j4';
+    const publicKey = 'uNVtw9rIaOf8C-iKr';
+
+    emailjs.sendForm(serviceId, templateId, formRef.current, {
+      publicKey: publicKey,
+    })
       .then(() => {
         setIsSubmitting(false);
         toast({
           title: "Message Sent!",
-          description: "Thank you! Your message has been saved to our database. To receive this as an email, please ensure the Trigger Email extension is configured.",
+          description: "Thank you! Your message has been sent successfully to Pradip.",
         });
         formRef.current?.reset();
       })
-      .catch(async (serverError) => {
+      .catch(() => {
         setIsSubmitting(false);
-        const permissionError = new FirestorePermissionError({
-          path: messagesRef.path,
-          operation: 'create',
-          requestResourceData: data,
-        });
-        errorEmitter.emit('permission-error', permissionError);
-        
         toast({
           variant: "destructive",
           title: "Uh oh! Something went wrong.",
-          description: "Could not save message. Please check your Firestore connection or Security Rules.",
+          description: "Could not send message. Please check your EmailJS configuration.",
         });
       });
   };
@@ -83,7 +67,7 @@ export function Contact() {
             <h2 className="text-sm font-headline font-bold text-accent tracking-[0.3em] uppercase mb-4">Connect</h2>
             <h3 className="text-4xl md:text-5xl font-headline font-bold text-white mb-6">Let's Create <span className="text-primary">Together</span></h3>
             <p className="text-white/60 text-lg leading-relaxed max-w-md">
-              Have a project in mind or just want to say hi? I'm now using Firebase to handle your inquiries securely and efficiently.
+              Have a project in mind or just want to say hi? I'm available for freelance work and collaboration.
             </p>
           </div>
 
@@ -157,7 +141,7 @@ export function Contact() {
             <Button disabled={isSubmitting} className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
               {isSubmitting ? (
                 <>
-                  Saving...
+                  Sending...
                   <Loader2 className="w-5 h-5 ml-2 animate-spin" />
                 </>
               ) : (
