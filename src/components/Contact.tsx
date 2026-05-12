@@ -1,13 +1,14 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send, MapPin, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 const socials = [
   { icon: <Github className="w-6 h-6" />, label: "GitHub", href: "https://github.com/Pradipdas647000", color: "hover:text-white" },
@@ -18,20 +19,40 @@ const socials = [
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    // To make this fully functional, replace these placeholders with your actual EmailJS credentials:
+    // Service ID, Template ID, and Public Key.
+    // The email will be sent to the address configured in your EmailJS template.
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID', 
+      'YOUR_TEMPLATE_ID', 
+      formRef.current, 
+      'YOUR_PUBLIC_KEY'
+    )
+    .then(() => {
       setIsSubmitting(false);
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
+      formRef.current?.reset();
+    })
+    .catch((error) => {
+      setIsSubmitting(false);
+      console.error('EmailJS Error:', error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Could not send the message. Please try again later.",
+      });
+    });
   };
 
   return (
@@ -104,20 +125,20 @@ export function Contact() {
           viewport={{ once: true }}
           className="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden"
         >
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Name</label>
-                <Input required placeholder="John Doe" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input name="user_name" required placeholder="John Doe" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/60 ml-1">Email</label>
-                <Input required placeholder="john@example.com" type="email" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+                <Input name="user_email" required placeholder="john@example.com" type="email" className="h-12 rounded-xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/60 ml-1">Message</label>
-              <Textarea required placeholder="How can I help you?" className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
+              <Textarea name="message" required placeholder="How can I help you?" className="min-h-[150px] rounded-2xl bg-white/5 border-white/10 focus:ring-primary focus:border-primary text-white placeholder:text-white/20" />
             </div>
             <Button disabled={isSubmitting} className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 group">
               {isSubmitting ? (
