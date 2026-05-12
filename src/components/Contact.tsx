@@ -21,7 +21,7 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // EmailJS Credentials provided by user
+  // EmailJS Credentials updated as per user request
   const serviceId = 'service_7d0jia9';
   const templateId = 'template_mbojxpg';
   const publicKey = 'cppoNUZkSq1FrNiJn';
@@ -39,12 +39,20 @@ export function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Using sendForm with explicit publicKey in options for V4 support
-      const result = await emailjs.sendForm(
+      // Using emailjs.send instead of sendForm for more explicit parameter passing
+      // This helps verify exactly what is being sent to the EmailJS server
+      const templateParams = {
+        user_name: formRef.current.user_name.value,
+        user_email: formRef.current.user_email.value,
+        message: formRef.current.message.value,
+        to_email: 'pradipdas647000@gmail.com'
+      };
+
+      const result = await emailjs.send(
         serviceId, 
         templateId, 
-        formRef.current, 
-        { publicKey: publicKey }
+        templateParams,
+        publicKey
       );
 
       if (result.status === 200) {
@@ -55,11 +63,12 @@ export function Contact() {
         formRef.current.reset();
       }
     } catch (error: any) {
-      // We avoid console.error to prevent NextJS dev overlay, showing info in toast instead
+      // Detailed error reporting to help diagnose EmailJS issues
+      const errorMessage = error?.text || error?.message || "Unknown error";
       toast({
         variant: "destructive",
         title: "Failed to send message",
-        description: error?.text || "Please check your EmailJS settings or internet connection.",
+        description: `Error: ${errorMessage}. Please verify your Template ID (${templateId}) and Service ID (${serviceId}) in EmailJS.`,
       });
     } finally {
       setIsSubmitting(false);
