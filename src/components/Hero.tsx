@@ -65,7 +65,6 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative min-h-screen flex items-center justify-center pt-20 md:pt-0 px-4 md:px-6 overflow-hidden"
     >
-      {/* Background glow that follows mouse - Hidden on mobile */}
       {!isMobile && (
         <div 
           className="absolute w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none transition-transform duration-500 ease-out"
@@ -84,15 +83,14 @@ export function Hero() {
         className="relative z-10 w-full max-w-4xl"
       >
         <div 
-          className="glass p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center space-y-6 md:space-y-8 transition-transform duration-500 ease-out shadow-2xl"
+          className="glass p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center text-center space-y-8 md:space-y-10 transition-transform duration-500 ease-out shadow-2xl"
           style={{
             transform: isMobile ? 'none' : `perspective(1000px) rotateX(${-mousePos.y}deg) rotateY(${mousePos.x}deg)`
           }}
         >
-          {/* Avatar Area */}
           <div className="relative group">
             <div className="absolute inset-[-4px] bg-gradient-to-tr from-primary via-accent to-primary rounded-[1.8rem] md:rounded-[2.5rem] blur-xl opacity-40 group-hover:opacity-80 transition-opacity duration-700 animate-pulse" />
-            <div className="relative w-28 h-40 md:w-36 md:h-52 rounded-[1.6rem] md:rounded-[2.2rem] border-2 border-white/20 p-1 overflow-hidden glass shadow-2xl">
+            <div className="relative w-24 h-36 md:w-32 md:h-48 rounded-[1.6rem] md:rounded-[2.2rem] border-2 border-white/20 p-1 overflow-hidden glass shadow-2xl">
               {avatarImage ? (
                 <Image 
                   src={avatarImage}
@@ -111,12 +109,12 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="space-y-3 md:space-y-4">
+          <div className="space-y-4">
             <motion.h2 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="font-satisfy text-2xl md:text-4xl"
+              className="font-satisfy text-2xl md:text-3xl"
             >
               Hi, I'm <span className="text-glow-cyan text-accent">Pradip</span>
             </motion.h2>
@@ -149,7 +147,7 @@ export function Hero() {
                 variant="outline" 
                 className="flex-1 sm:w-auto rounded-full glass glass-hover border-white/10 text-white px-6 h-12 md:h-14"
               >
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/autocv.pdf" target="_blank" rel="noopener noreferrer">
                   <FileText className="w-4 h-4 mr-2" />
                   Resume
                 </a>

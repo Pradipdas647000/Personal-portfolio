@@ -28,7 +28,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -60,7 +59,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-4 px-4 md:px-12",
         isScrolled || isMobileMenuOpen 
-          ? "bg-black md:bg-background/60 md:backdrop-blur-xl border-b border-white/5" 
+          ? "bg-black md:bg-background/80 md:backdrop-blur-xl border-b border-white/5" 
           : "bg-transparent"
       )}
     >
@@ -72,7 +71,6 @@ export function Navbar() {
           <span className="font-satisfy text-xl tracking-tight hidden xs:block text-white">Pradip</span>
         </a>
 
-        {/* Desktop Nav */}
         <div 
           className="hidden md:flex items-center glass p-1 rounded-full border border-white/10 relative"
           onMouseLeave={() => setHoveredIndex(null)}
@@ -112,7 +110,7 @@ export function Navbar() {
             variant="ghost" 
             className="text-white/70 hover:text-white hover:bg-white/10 rounded-full"
           >
-            <a href="/resume.pdf" download="Pradip_Das-resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/autocv.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -125,7 +123,6 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden text-white p-2 glass rounded-lg relative z-[110] bg-white/5 border-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -135,7 +132,6 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 

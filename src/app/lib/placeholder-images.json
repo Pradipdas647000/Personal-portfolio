@@ -8,6 +8,12 @@
       "imageHint": "code programming"
     },
     {
+      "id": "exam-focus",
+      "description": "Educational platform dashboard",
+      "imageUrl": "https://picsum.photos/seed/education/800/600",
+      "imageHint": "learning education"
+    },
+    {
       "id": "fitness-app",
       "description": "Fitness tracking mobile application",
       "imageUrl": "https://picsum.photos/seed/fitness/800/600",
@@ -20,6 +26,12 @@
       "imageHint": "weather sky"
     },
     {
+      "id": "ai-drone",
+      "description": "AI powered drone surveillance project",
+      "imageUrl": "https://picsum.photos/seed/drone/800/600",
+      "imageHint": "drone technology"
+    },
+    {
       "id": "personal-portfolio",
       "description": "Modern personal portfolio layout",
       "imageUrl": "https://picsum.photos/seed/portfolio/800/600",
@@ -30,12 +42,6 @@
       "description": "3D chess game interface",
       "imageUrl": "https://picsum.photos/seed/chess/800/600",
       "imageHint": "chess board"
-    },
-    {
-      "id": "ai-drone",
-      "description": "AI powered drone surveillance project",
-      "imageUrl": "https://picsum.photos/seed/drone/800/600",
-      "imageHint": "drone technology"
     },
     {
       "id": "avatar",
