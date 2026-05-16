@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -110,7 +109,7 @@ export function Navbar() {
             variant="ghost" 
             className="text-white/70 hover:text-white hover:bg-white/10 rounded-full"
           >
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/resume.pdf" download="Pradip_das-resume.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -169,6 +168,7 @@ export function Navbar() {
               >
                 <a 
                   href="/resume.pdf" 
+                  download="Pradip_das-resume.pdf"
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
