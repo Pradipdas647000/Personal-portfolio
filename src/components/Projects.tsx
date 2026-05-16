@@ -23,7 +23,7 @@ const projectsData = [
     desc: "A comprehensive educational platform designed to help students prepare for competitive exams with curated resources.",
     tech: ["Next.js", "Firebase", "Tailwind"],
     demoUrl: "https://exam-focus.vercel.app",
-    repoUrl: "#",
+    repoUrl: "https://github.com/Pradipdas647000/Exam-Focus",
   },
   {
     id: "fitness-app",
