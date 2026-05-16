@@ -22,7 +22,7 @@ const projectsData = [
     title: "Exam Focus",
     desc: "A comprehensive educational platform designed to help students prepare for competitive exams with curated resources.",
     tech: ["Next.js", "Firebase", "Tailwind"],
-    demoUrl: "#",
+    demoUrl: "https://exam-focus.vercel.app",
     repoUrl: "#",
   },
   {

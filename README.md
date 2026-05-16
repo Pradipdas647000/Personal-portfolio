@@ -13,7 +13,7 @@ This portfolio is built to demonstrate a high level of UI/UX design combined wit
 
 ### ✨ Key Features
 - **Dynamic Hero Section:** Featuring a typewriter effect and interactive mouse-tracking card.
-- **Project Showcase:** A filtered grid of featured creations with tech stack badges.
+- **Project Showcase:** A filtered grid of featured creations with tech stack badges and live demos.
 - **Experience Timeline:** A vertical layout detailing professional and academic milestones.
 - **Technical Arsenal:** A visual grid of languages, frameworks, and tools.
 - **Contact Integration:** Functional contact form powered by EmailJS.
