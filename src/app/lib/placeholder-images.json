@@ -20,10 +20,10 @@
       "imageHint": "weather sky"
     },
     {
-      "id": "snake-game",
-      "description": "Retro snake game with neon graphics",
-      "imageUrl": "https://picsum.photos/seed/snake/800/600",
-      "imageHint": "retro game"
+      "id": "personal-portfolio",
+      "description": "Modern personal portfolio layout",
+      "imageUrl": "https://picsum.photos/seed/portfolio/800/600",
+      "imageHint": "website layout"
     },
     {
       "id": "chess-game",
