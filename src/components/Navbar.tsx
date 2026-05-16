@@ -110,7 +110,7 @@ export function Navbar() {
             variant="ghost" 
             className="text-white/70 hover:text-white hover:bg-white/10 rounded-full"
           >
-            <a href="/autocv.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -168,7 +168,7 @@ export function Navbar() {
                 className="w-full h-14 rounded-2xl border-white/10 bg-white/5 text-white text-lg"
               >
                 <a 
-                  href="/autocv.pdf" 
+                  href="/resume.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
