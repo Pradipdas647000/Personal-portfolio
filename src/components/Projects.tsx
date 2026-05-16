@@ -33,7 +33,7 @@ const projectsData = [
     desc: "Minimalist weather dashboard with precise local data and forecast visuals.",
     tech: ["Next.js", "Tailwind"],
     size: "md",
-    demoUrl: "#",
+    demoUrl: "https://sky-cast-weather-webapp.vercel.app",
     repoUrl: "https://github.com/Pradipdas647000/SkyCast-weather-webapp",
   },
   {
